@@ -1,6 +1,9 @@
 # Personal Neovim Configuration
 MUST INSTALL `ripgrep` for telescope, and setup `nvim-tmux-navigation` properly.
 
+![image](https://github.com/renztp/init.lua/assets/33044507/4486a5bc-8209-4202-a962-ad1c6c0a0844)
+
+
 ### Plugins Included
 - packer
 - plenary
