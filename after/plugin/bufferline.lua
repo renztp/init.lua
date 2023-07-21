@@ -16,7 +16,7 @@ require("bufferline").setup{
         return vim.fn.fnamemodify(buf.name, ':t:r')
       end
     end,
-    max_name_length = 18,
+    max_name_length = 50,
     max_prefix_length = 15, -- prefix used when a buffer is deduplicated
     tab_size = 18,
     diagnostics = false,

@@ -11,7 +11,8 @@ return require('packer').startup(function(use)
   }
 
   -- Colorscheme
-  use 'Mofiqul/vscode.nvim'
+  use "rebelot/kanagawa.nvim"
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- Treesitter
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -62,7 +63,6 @@ use {
 use('windwp/nvim-autopairs')
 use('tpope/vim-commentary')
 use('tpope/vim-surround')
-use('sunjon/shade.nvim')
 use({
   "utilyre/barbecue.nvim",
   tag = "*",
@@ -119,6 +119,14 @@ use({
   },
 })
 use 'RRethy/vim-illuminate'
-use 'folke/which-key.nvim'
+use { 'folke/which-key.nvim' , config = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 0 
+  end
+}
 -- use 'xiyaowong/nvim-cursorword'
+use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+use {
+    "jay-babu/mason-nvim-dap.nvim",
+}
 end)
