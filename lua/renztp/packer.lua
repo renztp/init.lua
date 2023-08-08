@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
   -- Colorscheme
   use "rebelot/kanagawa.nvim"
   use { "catppuccin/nvim", as = "catppuccin" }
+  use 'Mofiqul/vscode.nvim'
 
   -- Treesitter
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
@@ -54,7 +55,14 @@ use('github/copilot.vim')
 
 use('nvim-tree/nvim-tree.lua')
 use('nvim-tree/nvim-web-devicons')
-use('lewis6991/gitsigns.nvim')
+use {
+  "lewis6991/gitsigns.nvim",
+  config = function()
+    require('gitsigns').setup()
+    require("scrollbar.handlers.gitsigns").setup()
+  end
+}
+
 use {
   'nvim-lualine/lualine.nvim',
   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
@@ -88,9 +96,26 @@ use {
   end,
   requires = {'nvim-tree/nvim-web-devicons'}
 }
-use 'karb94/neoscroll.nvim'
-use 'dstein64/nvim-scrollview'
+-- use 'karb94/neoscroll.nvim'
+-- use 'dstein64/nvim-scrollview'
+use("petertriho/nvim-scrollbar")
+use {
+  "kevinhwang91/nvim-hlslens",
+  config = function()
+    require("hlslens").setup({
+       build_position_cb = function(plist, _, _, _)
+            require("scrollbar.handlers.search").handler.show(plist.start_pos)
+       end,
+    })
 
+    vim.cmd([[
+        augroup scrollbar_search_hide
+            autocmd!
+            autocmd CmdlineLeave : lua require('scrollbar.handlers.search').handler.hide()
+        augroup END
+    ]])
+  end,
+}
 -- import the handlebar plugin
 use 'mustache/vim-mustache-handlebars'
 use { 'alexghergh/nvim-tmux-navigation', config = function()
@@ -128,5 +153,18 @@ use { 'folke/which-key.nvim' , config = function()
 use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 use {
     "jay-babu/mason-nvim-dap.nvim",
+}
+
+-- add the git-blame plugin
+use 'f-person/git-blame.nvim'
+
+-- install leap
+use {
+  'phaazon/hop.nvim',
+  branch = 'v2', -- optional but strongly recommended
+  config = function()
+    -- you can configure Hop the way you like here; see :h hop-config
+    require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+  end
 }
 end)

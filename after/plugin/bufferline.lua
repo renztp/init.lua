@@ -35,3 +35,12 @@ require("bufferline").setup{
     sort_by = 'id'
   }
 }
+
+vim.keymap.set('n', '<leader>g 1', "<cmd>BufferLineGoToBuffer 1<CR>")
+vim.keymap.set('n', '<leader>g 2', "<cmd>BufferLineGoToBuffer 2<CR>")
+vim.keymap.set('n', '<leader>g 3', "<cmd>BufferLineGoToBuffer 3<CR>")
+vim.keymap.set('n', '<leader>g 4', "<cmd>BufferLineGoToBuffer 4<CR>")
+vim.keymap.set('n', '<leader>g 5', "<cmd>BufferLineGoToBuffer 5<CR>")
+vim.keymap.set('n', '<leader>g 6', "<cmd>BufferLineGoToBuffer 6<CR>")
+vim.keymap.set('n', '<leader><leader><TAB>', "<cmd>bprev<CR>")
+vim.keymap.set('n', '<leader><TAB>', "<cmd>bnext<CR>")
