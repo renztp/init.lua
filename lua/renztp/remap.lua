@@ -39,6 +39,7 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/init.lua<CR>");
 
 vim.keymap.set("n", "<leader><leader>ff", "<cmd>:NvimTreeFocus<CR>")
 vim.keymap.set("n", "<leader><leader>fc", "<cmd>:NvimTreeFindFile<CR>")
+vim.keymap.set("n", "<leader><leader>te", "<cmd>:NvimTreeToggle<CR>")
 
 -- add a keymap to move buffers using leader + w + h/j/k/l
 vim.keymap.set("n", "<leader>wj", "<cmd>wincmd j<CR>")
@@ -50,4 +51,10 @@ vim.keymap.set("n", "<leader>wl", "<cmd>wincmd l<CR>")
 vim.keymap.set("n", "<leader>q", "<cmd>Bdelete<CR>")
 
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
-vim.keymap.set("n", "<C-f>", "/")
+
+vim.keymap.set("n", "<leader>dd", "<cmd>DiffviewOpen<CR>")
+
+vim.keymap.set("v", "<leader>y", [["+y]])
+vim.keymap.set("v", "<leader>Y", [["+Y]])
+vim.keymap.set("v", "<leader>p", [["+p]])
+vim.keymap.set("v", "<leader>P", [["+P]])

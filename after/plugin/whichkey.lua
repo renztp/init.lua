@@ -39,8 +39,19 @@ local wk = require('which-key')
 wk.register({
   p = {
     name = "Telescope",
-    f = { "<cmd>Telescope find_files<cr>", "Find File" },
-    b = { "<cmd>Telescope buffers<cr>", "Find Buffer" },
-    s = { "<cmd>Telescope live_grep<cr>", "Find String" },
-  }
+    f = { "Find File" },
+    b = { "Find Buffer" },
+    s = { "Live Grep" },
+    P = { "Telescope Builtint" },
+    l = { "Symbols" },
+    r = { "Find References" },
+  },
+  f = {
+    h = { "Help Tags" }
+  },
+  g = {
+    g = { "LazyGit" }
+  },
+  a = { "Harpoon: Add file to marked" },
+  e = { "Harpoon: Browse Marked Files" },
 }, { prefix = "<leader>" });

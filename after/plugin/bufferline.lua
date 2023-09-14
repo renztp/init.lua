@@ -29,18 +29,12 @@ require("bufferline").setup{
     show_close_icon = true,
     show_tab_indicators = true,
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-    separator_style = "thin",
+    separator_style = "thick",
     enforce_regular_tabs = false,
     always_show_bufferline = true,
     sort_by = 'id'
   }
 }
 
-vim.keymap.set('n', '<leader>g 1', "<cmd>BufferLineGoToBuffer 1<CR>")
-vim.keymap.set('n', '<leader>g 2', "<cmd>BufferLineGoToBuffer 2<CR>")
-vim.keymap.set('n', '<leader>g 3', "<cmd>BufferLineGoToBuffer 3<CR>")
-vim.keymap.set('n', '<leader>g 4', "<cmd>BufferLineGoToBuffer 4<CR>")
-vim.keymap.set('n', '<leader>g 5', "<cmd>BufferLineGoToBuffer 5<CR>")
-vim.keymap.set('n', '<leader>g 6', "<cmd>BufferLineGoToBuffer 6<CR>")
-vim.keymap.set('n', '<leader><leader><TAB>', "<cmd>bprev<CR>")
-vim.keymap.set('n', '<leader><TAB>', "<cmd>bnext<CR>")
+vim.keymap.set('n', '<S-Tab>', "<cmd>bprev<CR>")
+vim.keymap.set('n', '<Tab>', "<cmd>bnext<CR>")

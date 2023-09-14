@@ -11,8 +11,6 @@ return require('packer').startup(function(use)
   }
 
   -- Colorscheme
-  use "rebelot/kanagawa.nvim"
-  use { "catppuccin/nvim", as = "catppuccin" }
   use 'Mofiqul/vscode.nvim'
 
   -- Treesitter
@@ -86,19 +84,20 @@ use({
 -- using packer.nvim
 use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
 
-use {
-  'glepnir/dashboard-nvim',
-  event = 'VimEnter',
-  config = function()
-    require('dashboard').setup {
-      theme = 'hyper'
-    }
-  end,
-  requires = {'nvim-tree/nvim-web-devicons'}
-}
+-- use {
+--   'glepnir/dashboard-nvim',
+--   event = 'VimEnter',
+--   config = function()
+--     require('dashboard').setup {
+--       theme = 'hyper'
+--     }
+--   end,
+--   requires = {'nvim-tree/nvim-web-devicons'}
+-- }
 -- use 'karb94/neoscroll.nvim'
 -- use 'dstein64/nvim-scrollview'
 use("petertriho/nvim-scrollbar")
+
 use {
   "kevinhwang91/nvim-hlslens",
   config = function()
@@ -116,6 +115,7 @@ use {
     ]])
   end,
 }
+
 -- import the handlebar plugin
 use 'mustache/vim-mustache-handlebars'
 use { 'alexghergh/nvim-tmux-navigation', config = function()
@@ -146,14 +146,10 @@ use({
 use 'RRethy/vim-illuminate'
 use { 'folke/which-key.nvim' , config = function()
     vim.o.timeout = true
-    vim.o.timeoutlen = 0 
+    vim.o.timeoutlen = 0
   end
 }
 -- use 'xiyaowong/nvim-cursorword'
-use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-use {
-    "jay-babu/mason-nvim-dap.nvim",
-}
 
 -- add the git-blame plugin
 use 'f-person/git-blame.nvim'
@@ -167,4 +163,35 @@ use {
     require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
   end
 }
+use {'stevearc/dressing.nvim'}
+use 'sindrets/diffview.nvim'
+
+use "lukas-reineke/indent-blankline.nvim"
+
+-- vim multi select
+use 'mg979/vim-visual-multi'
+
+-- project management
+-- Lua
+use {
+  "ahmedkhalf/project.nvim",
+  config = function()
+    require("project_nvim").setup {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  end
+}
+
+-- terminal
+use {"akinsho/toggleterm.nvim", tag = '*'}
+
+-- debugging
+use {
+  "williamboman/mason.nvim",
+  "mfussenegger/nvim-dap",
+  "jay-babu/mason-nvim-dap.nvim",
+}
 end)
+

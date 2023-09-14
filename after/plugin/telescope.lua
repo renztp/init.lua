@@ -4,8 +4,11 @@ require('telescope').setup{
       theme = "dropdown",
       previewer = false,
       layout_strategy = 'vertical',
+      lsp_references = {
+        path_display = { "smart" },
+      },
       layout_config = {
-        width = 0.5,
+        width = 0.7,
         height = 0.6,
         prompt_position = "top",
         flex = {
@@ -17,6 +20,9 @@ require('telescope').setup{
       theme = "dropdown",
       previewer = false,
       layout_strategy = 'vertical',
+      lsp_references = {
+        path_display = { "smart" },
+      },
       layout_config = {
         width = 0.5,
         height = 0.6,
@@ -31,30 +37,48 @@ require('telescope').setup{
       previewer = false
     },
     lsp_references = {
+      theme = "ivy",
       layout_strategy = 'horizontal',
       show_line = false,
-      path_display = { "absolute" },
+      path_display = { "smart" },
       layout_config = {
-        width = 0.9,
-        height = 0.7,
-        prompt_position = "top",
+        width = 0.99,
+        height = 0.99,
+        prompt_position = "bottom",
+        preview_width = 0.4,
+      }
+    },
+    live_grep = {
+      theme = "dropdown",
+      layout_strategy = 'horizontal',
+      show_line = false,
+      path_display = { "smart" },
+      layout_config = {
+        width = 0.99,
+        height = 0.99,
+        prompt_position = "bottom",
+        preview_width = 0.4,
       }
     },
   }
 }
 local builtin = require('telescope.builtin')
+require('telescope').load_extension('projects')
+
 vim.keymap.set('n', '<leader>pf', builtin.find_files)
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>P', "<cmd>Telescope builtin<CR>")
-vim.keymap.set('n', '<leader>ps', function()
-    builtin.grep_string({ search = vim.fn.input("Grep > ") })
-end)
+vim.keymap.set('n', '<leader>pp', "<cmd>Telescope builtin<CR>")
+-- vim.keymap.set('n', '<leader>pS', function()
+--     builtin.grep_string({ search = vim.fn.input("Grep > ") })
+-- end)
+vim.keymap.set('n', '<leader>ps', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-
-vim.keymap.set('n', '<leader>pS', builtin.live_grep, {})
 -- :let @+=expand('%:p')
 vim.keymap.set('n', '<leader>cf', "<cmd>let @+=expand('%:p')<CR>")
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>pr', builtin.lsp_references, {})
 vim.keymap.set('n', '<leader>pl', builtin.lsp_document_symbols, {})
+vim.keymap.set('n', '<leader><leader>pl', builtin.lsp_dynamic_workspace_symbols, {})
+vim.keymap.set('n', '<leader>pr', "<cmd>Telescope projects<CR>")
+vim.keymap.set('n', '<C-f>', builtin.current_buffer_fuzzy_find, {})
+-- vim.keymap.set('n', '<leader>pl', require('telescope').extensions.projects, {})
