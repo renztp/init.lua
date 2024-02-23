@@ -5,14 +5,13 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
-    -- or                            , branch = '0.1.x',
+    'nvim-telescope/telescope.nvim', tag = '0.1.4',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
   -- Colorscheme
-  use 'Mofiqul/vscode.nvim'
-
+  use { "bluz71/vim-moonfly-colors" }
+  use { "folke/tokyonight.nvim" }
   -- Treesitter
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
@@ -66,7 +65,10 @@ use {
   requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 }
 -- get plugins to mimic vscode behaviour
-use('windwp/nvim-autopairs')
+use {
+	"windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+}
 use('tpope/vim-commentary')
 use('tpope/vim-surround')
 use({
@@ -83,19 +85,6 @@ use({
 })
 -- using packer.nvim
 use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
-
--- use {
---   'glepnir/dashboard-nvim',
---   event = 'VimEnter',
---   config = function()
---     require('dashboard').setup {
---       theme = 'hyper'
---     }
---   end,
---   requires = {'nvim-tree/nvim-web-devicons'}
--- }
--- use 'karb94/neoscroll.nvim'
--- use 'dstein64/nvim-scrollview'
 use("petertriho/nvim-scrollbar")
 
 use {
@@ -117,7 +106,7 @@ use {
 }
 
 -- import the handlebar plugin
-use 'mustache/vim-mustache-handlebars'
+-- use 'mustache/vim-mustache-handlebars'
 use { 'alexghergh/nvim-tmux-navigation', config = function()
   require'nvim-tmux-navigation'.setup {
     disable_when_zoomed = true, -- defaults to false
@@ -166,32 +155,12 @@ use {
 use {'stevearc/dressing.nvim'}
 use 'sindrets/diffview.nvim'
 
-use "lukas-reineke/indent-blankline.nvim"
-
 -- vim multi select
 use 'mg979/vim-visual-multi'
 
--- project management
--- Lua
-use {
-  "ahmedkhalf/project.nvim",
-  config = function()
-    require("project_nvim").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  end
-}
+use "HiPhish/nvim-ts-rainbow2"
 
--- terminal
-use {"akinsho/toggleterm.nvim", tag = '*'}
-
--- debugging
-use {
-  "williamboman/mason.nvim",
-  "mfussenegger/nvim-dap",
-  "jay-babu/mason-nvim-dap.nvim",
-}
+  use('neovim/nvim-lspconfig')
+  use('jose-elias-alvarez/null-ls.nvim')
+  use('MunifTanjim/prettier.nvim')
 end)
-

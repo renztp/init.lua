@@ -19,9 +19,6 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
--- This is going to get me cancelled
-vim.keymap.set("i", "<C-c>", "<Esc>")
-
 vim.keymap.set("n", "Q", "<nop>")
 -- this needs to be investigated
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -37,9 +34,12 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/init.lua<CR>");
 
-vim.keymap.set("n", "<leader><leader>ff", "<cmd>:NvimTreeFocus<CR>")
-vim.keymap.set("n", "<leader><leader>fc", "<cmd>:NvimTreeFindFile<CR>")
-vim.keymap.set("n", "<leader><leader>te", "<cmd>:NvimTreeToggle<CR>")
+-- old
+-- vim.keymap.set("n", "<leader><leader>ff", "<cmd>:NvimTreeFocus<CR>")
+-- vim.keymap.set("n", "<leader><leader>fc", "<cmd>:NvimTreeFindFile<CR>")
+-- vim.keymap.set("n", "<leader><leader>te", "<cmd>:NvimTreeToggle<CR>")
+-- new
+vim.keymap.set("n", "t", "<cmd>:NvimTreeFindFile<CR>")
 
 -- add a keymap to move buffers using leader + w + h/j/k/l
 vim.keymap.set("n", "<leader>wj", "<cmd>wincmd j<CR>")
@@ -58,3 +58,6 @@ vim.keymap.set("v", "<leader>y", [["+y]])
 vim.keymap.set("v", "<leader>Y", [["+Y]])
 vim.keymap.set("v", "<leader>p", [["+p]])
 vim.keymap.set("v", "<leader>P", [["+P]])
+
+vim.keymap.set("n", "<F5>", "<cmd>term python3 %<CR>")
+

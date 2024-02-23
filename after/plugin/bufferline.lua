@@ -29,12 +29,16 @@ require("bufferline").setup{
     show_close_icon = true,
     show_tab_indicators = true,
     persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-    separator_style = "thick",
+    separator_style = "slant",
     enforce_regular_tabs = false,
     always_show_bufferline = true,
     sort_by = 'id'
   }
 }
 
-vim.keymap.set('n', '<S-Tab>', "<cmd>bprev<CR>")
-vim.keymap.set('n', '<Tab>', "<cmd>bnext<CR>")
+-- vim.keymap.set('n', '<leader>h', "<cmd>bprev<CR>")
+-- vim.keymap.set('n', '<leader>l', "<cmd>bnext<CR>")
+-- vim.keymap.set('n', '<M-h>', "<cmd>bprev<CR>")
+-- vim.keymap.set('n', '<M-l>', "<cmd>bnext<CR>")
+vim.keymap.set('n', 'gh', "<cmd>bprev<CR>")
+vim.keymap.set('n', 'gl', "<cmd>bnext<CR>")

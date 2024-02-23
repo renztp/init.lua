@@ -1,5 +1,6 @@
 vim.opt.guicursor = ""
 
+vim.opt.scroll = 10
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -22,8 +23,8 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scr = 8
-vim.opt.scrolloff = 8
+-- vim.opt.scr = 8
+-- vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
@@ -32,3 +33,6 @@ vim.opt.cursorline = true
 vim.opt.wrap = true
 
 vim.opt.background = "dark"
+
+vim.opt.clipboard="unnamedplus"
+vim.opt.mouse=v

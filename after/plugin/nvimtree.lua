@@ -7,6 +7,9 @@ vim.opt.termguicolors = true
 
 -- empty setup using defaults
 require("nvim-tree").setup({
+  update_focused_file = {
+    enable = true,
+  },
   sort_by = "case_sensitive",
   view = {
     width = 40,
@@ -16,6 +19,11 @@ require("nvim-tree").setup({
   },
   filters = {
     dotfiles = false,
+  },
+  git = {
+    enable = true,
+    ignore = false,
+    timeout = 500
   },
   on_attach = "default",
 })
