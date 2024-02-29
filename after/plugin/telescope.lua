@@ -1,4 +1,4 @@
-require('telescope').setup{
+require('telescope').setup {
   pickers = {
     find_files = {
       theme = "dropdown",
@@ -96,3 +96,4 @@ vim.keymap.set('n', '<leader><leader>pl', builtin.lsp_dynamic_workspace_symbols,
 -- vim.keymap.set('n', '<leader>pr', "<cmd>Telescope projects<CR>")
 vim.keymap.set('n', '<C-f>', builtin.current_buffer_fuzzy_find, {})
 -- vim.keymap.set('n', '<leader>pl', require('telescope').extensions.projects, {})
+vim.keymap.set('n', '<leader>fs', require("telescope").extensions.live_grep_args.live_grep_args, { noremap = true })

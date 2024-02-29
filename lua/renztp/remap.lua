@@ -40,6 +40,7 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/init.lua<CR>");
 -- vim.keymap.set("n", "<leader><leader>te", "<cmd>:NvimTreeToggle<CR>")
 -- new
 vim.keymap.set("n", "t", "<cmd>:NvimTreeFindFile<CR>")
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- add a keymap to move buffers using leader + w + h/j/k/l
 vim.keymap.set("n", "<leader>wj", "<cmd>wincmd j<CR>")
@@ -59,5 +60,13 @@ vim.keymap.set("v", "<leader>Y", [["+Y]])
 vim.keymap.set("v", "<leader>p", [["+p]])
 vim.keymap.set("v", "<leader>P", [["+P]])
 
-vim.keymap.set("n", "<F5>", "<cmd>term python3 %<CR>")
+vim.keymap.set("n", "<F6>", "<cmd>term python3 %<CR>")
+vim.keymap.set("n", "<F5>", "<cmd>CompileAndRunTS<CR>")
 
+vim.keymap.set("n", "gf", function()
+  if require("obsidian").util.cursor_on_markdown_link() then
+    return "<cmd>ObsidianFollowLink<CR>"
+  else
+    return "gf"
+  end
+end, { noremap = false, expr = true })

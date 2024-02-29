@@ -1,6 +1,5 @@
 vim.opt.guicursor = ""
 
-vim.opt.scroll = 10
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -10,8 +9,6 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
-
-vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -35,4 +32,4 @@ vim.opt.wrap = true
 vim.opt.background = "dark"
 
 vim.opt.clipboard="unnamedplus"
-vim.opt.mouse=v
+vim.opt.mouse=a

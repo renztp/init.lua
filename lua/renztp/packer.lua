@@ -6,12 +6,13 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.4',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { {'nvim-lua/plenary.nvim'}, {"nvim-telescope/telescope-live-grep-args.nvim"} }
   }
 
   -- Colorscheme
   use { "bluz71/vim-moonfly-colors" }
   use { "folke/tokyonight.nvim" }
+  use { "tiagovla/tokyodark.nvim" }
   -- Treesitter
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   use('nvim-treesitter/playground')
@@ -50,7 +51,7 @@ return require('packer').startup(function(use)
 -- Github copilot
 use('github/copilot.vim')
 
-use('nvim-tree/nvim-tree.lua')
+-- use('nvim-tree/nvim-tree.lua')
 use('nvim-tree/nvim-web-devicons')
 use {
   "lewis6991/gitsigns.nvim",
@@ -163,4 +164,22 @@ use "HiPhish/nvim-ts-rainbow2"
   use('neovim/nvim-lspconfig')
   use('jose-elias-alvarez/null-ls.nvim')
   use('MunifTanjim/prettier.nvim')
+
+  use({
+    "epwalsh/obsidian.nvim",
+    tag = "*",  -- recommended, use latest release instead of latest commit
+  })
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+  }
+  -- Alternate file plugin
+  -- use({
+  --   "stevearc/oil.nvim",
+  --   config = function()
+  --     require("oil").setup()
+  --   end,
+  -- })
 end)

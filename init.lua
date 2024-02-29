@@ -18,6 +18,7 @@ if vim.g.neovide then
   vim.g.neovide_transparency = 0.9
   vim.g.transparency = 0.9
 else
+  vim.opt.conceallevel = 1
   require('renztp')
   vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
   vim.keymap.set('v', '<D-c>', '"+y') -- Copy
@@ -32,3 +33,9 @@ vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+
+vim.api.nvim_create_user_command('CompileAndRunTS', function()
+    vim.cmd('!npx tsc %')
+    vim.cmd('!node %:r.js')
+end, {})
+

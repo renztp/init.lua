@@ -38,7 +38,7 @@ require("bufferline").setup{
 
 -- vim.keymap.set('n', '<leader>h', "<cmd>bprev<CR>")
 -- vim.keymap.set('n', '<leader>l', "<cmd>bnext<CR>")
--- vim.keymap.set('n', '<M-h>', "<cmd>bprev<CR>")
--- vim.keymap.set('n', '<M-l>', "<cmd>bnext<CR>")
-vim.keymap.set('n', 'gh', "<cmd>bprev<CR>")
-vim.keymap.set('n', 'gl', "<cmd>bnext<CR>")
+vim.keymap.set('n', '<M-h>', "<cmd>bprev<CR>")
+vim.keymap.set('n', '<M-l>', "<cmd>bnext<CR>")
+-- vim.keymap.set('n', 'gh', "<cmd>bprev<CR>")
+-- vim.keymap.set('n', 'gl', "<cmd>bnext<CR>")

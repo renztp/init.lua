@@ -3,11 +3,13 @@ require('lualine').setup({
     theme = 'auto',
   },
    sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diagnostics'},
+    lualine_a = {'branch'},
+    lualine_b = {'diagnostics'},
     lualine_c = {'filename'},
     lualine_x = {'diff','encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
   },
 })
+
+-- test
