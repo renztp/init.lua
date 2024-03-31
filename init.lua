@@ -1,41 +1,145 @@
-if vim.g.neovide then
-  require('renztp')
-  vim.o.guifont = "SF Mono:h9"
+vim.opt.guicursor = ""
+vim.g.mapleader = " "
 
-  -- vim.g.neovide_floating_blur_amount_y = 1.0
-  -- vim.g.neovide_transparency = 0.85
-  -- vim.opt.linespace = 3
+vim.opt.nu = true
+vim.opt.relativenumber = true
+vim.syntax = true
 
-  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
-  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
 
-  -- Helper function for transparency formatting
-  -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-  vim.g.neovide_transparency = 0.9
-  vim.g.transparency = 0.9
-else
-  vim.opt.conceallevel = 1
-  require('renztp')
-  vim.keymap.set('n', '<D-s>', ':w<CR>') -- Save
-  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
-  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-  vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+vim.opt.smartindent = true
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+vim.opt.conceallevel = 1
+
+
+
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+
+vim.opt.termguicolors = true
+
+vim.opt.scr = 8
+vim.opt.scrolloff = 8
+vim.opt.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
+
+vim.opt.updatetime = 50
+vim.opt.cursorline = true
+vim.opt.wrap = true
+
+vim.opt.background = "dark"
+--
+vim.opt.clipboard = "unnamedplus"
+vim.opt.mouse = a
+
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
--- Allow clipboard copy paste in neovim
-vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+require("lazy").setup("plugins")
 
-vim.api.nvim_create_user_command('CompileAndRunTS', function()
-    vim.cmd('!npx tsc %')
-    vim.cmd('!node %:r.js')
-end, {})
+-- Colorscheme
+vim.cmd [[colorscheme vscode]]
 
+-- ***************
+-- --- KEYMAPS ---
+-- ***************
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set("n", "J", "mzJ`z")
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+
+vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/init.lua<CR>");
+vim.keymap.set("n", "<leader>q", "<cmd>Bdelete<CR>")
+
+vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
+
+vim.keymap.set("n", "<leader>dd", "<cmd>DiffviewOpen<CR>")
+
+vim.keymap.set("v", "<leader>y", [["+y]])
+vim.keymap.set("v", "<leader>Y", [["+Y]])
+vim.keymap.set("v", "<leader>p", [["+p]])
+vim.keymap.set("v", "<leader>P", [["+P]])
+
+vim.keymap.set("n", "<F6>", "<cmd>term python3 %<CR>")
+vim.keymap.set("n", "<F5>", "<cmd>CompileAndRunTS<CR>")
+-- vim.keymap.set("n", "<leader>fc", "<cmd>LspZeroFormat<CR>")
+vim.api.nvim_set_keymap('n', '<C-d>',
+  "v:count == 0 ? luaeval('vim.api.nvim_win_get_height(0)') / 3 .. '<C-d>zz' : '<C-d>zz'",
+  { noremap = true, expr = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-u>',
+  "v:count == 0 ? luaeval('vim.api.nvim_win_get_height(0)') / 3 .. '<C-u>zz' : '<C-u>zz'",
+  { noremap = true, expr = true, silent = true })
+
+vim.keymap.set("n", "<leader>dh", "<cmd>nohl<CR>")
+vim.keymap.set("n", "<leader>cod", "<cmd>Copilot disable<CR>")
+vim.keymap.set("n", "<leader>coa", "<cmd>Copilot enable<CR>")
+vim.keymap.set("n", "gf", function()
+  if require("obsidian").util.cursor_on_markdown_link() then
+    return "<cmd>ObsidianFollowLink<CR>"
+  else
+    return "gf"
+  end
+end, { noremap = false, expr = true })
+
+vim.keymap.set("n", "<leader>gbt", "<cmd>GitBlameToggle<CR>")
+
+vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', {})
+vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', {})
+vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', {})
+vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', {})
+vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', {})
+vim.keymap.set('n', 'gr', function() require('telescope.builtin').lsp_references() end, {})
+vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', {})
+vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', {})
+vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', {})
+vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', {})
+
+vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', {})
+vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {})
+vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', {})
+vim.keymap.set("n", "<leader>cd", "<cmd>Copilot disable<CR>")
+vim.keymap.set("n", "<leader>ce", "<cmd>Copilot enable<CR>")
+
+vim.keymap.set('n', '<leader>fm', function()
+  local searchWord = vim.fn.input("Search for: ")
+  vim.cmd(string.format("'a,'b/%s", searchWord))
+end, { noremap = true })
+vim.keymap.set('n', '<leader>dm', '<cmd>delmarks ab<cr>', {})
