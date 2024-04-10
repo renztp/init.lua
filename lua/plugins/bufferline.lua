@@ -1,7 +1,10 @@
 return {
-  'akinsho/bufferline.nvim', 
-  version = "*", 
-  dependencies = 'nvim-tree/nvim-web-devicons', 
+  'akinsho/bufferline.nvim',
+  version = "*",
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+    'famiu/bufdelete.nvim'
+  },
   config = function()
     require("bufferline").setup({
       options = {
@@ -16,7 +19,7 @@ return {
         close_icon = '',
         left_trunc_marker = '',
         right_trunc_marker = '',
-        name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
+        name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
           if buf.name:match('%.md') then
             return vim.fn.fnamemodify(buf.name, ':t:r')
           end
@@ -26,13 +29,13 @@ return {
         tab_size = 18,
         diagnostics = false,
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
-          return "("..count..")"
+          return "(" .. count .. ")"
         end,
         indicator = {
           icon = '▎', -- this should be omitted if indicator style is not 'icon'
           style = 'underline',
         },
-        offsets = {{filetype = "NvimTree", text = "File Explorer", text_align = "center"}},
+        offsets = { { filetype = "NvimTree", text = "File Explorer", text_align = "center" } },
         show_buffer_icons = true,
         show_buffer_close_icons = true,
         show_close_icon = true,
@@ -58,4 +61,3 @@ return {
     vim.keymap.set('n', '<M-l>', "<cmd>bnext<CR>")
   end
 }
-

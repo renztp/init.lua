@@ -26,11 +26,36 @@ return {
 
   -- Autocompletion
   {
+    "L3MON4D3/LuaSnip",
+    dependencies = { "saadparwaiz1/cmp_luasnip", "rafamadriz/friendly-snippets" },
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
+    config = function()
+      local ls = require("luasnip")
+      local s = ls.snippet
+      local t = ls.text_node
+      local i = ls.insert_node
+
+      ls.add_snippets("all", {
+        s("hello", {
+          t("Hello, "),
+          i(1),
+          t(". Nice to meet you!"),
+        }),
+
+        s("ccon", {
+          t("console.log('[LOG]::"),
+          i(1),
+          t("');"),
+        })
+      })
+    end,
+  },
+  {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
-    dependencies = {
-      { 'L3MON4D3/LuaSnip' },
-    },
     config = function()
       -- Here is where you configure the autocompletion settings.
       local lsp_zero = require('lsp-zero')
@@ -38,6 +63,7 @@ return {
 
       -- And you can configure cmp even more, if you want to.
       local cmp = require('cmp')
+      require("luasnip.loaders.from_vscode").lazy_load()
       local cmp_action = lsp_zero.cmp_action()
 
       cmp.setup({
@@ -49,7 +75,21 @@ return {
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
           ['<C-f>'] = cmp_action.luasnip_jump_forward(),
           ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-        })
+        }),
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        },
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
+          { name = 'buffer' },
+        }),
       })
     end
   },

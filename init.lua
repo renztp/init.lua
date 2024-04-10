@@ -91,7 +91,8 @@ vim.keymap.set("n", "<leader>q", "<cmd>Bdelete<CR>")
 
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<CR>")
 
-vim.keymap.set("n", "<leader>dd", "<cmd>DiffviewOpen<CR>")
+vim.keymap.set("n", "<leader>dvo", "<cmd>DiffviewOpen<CR>")
+vim.keymap.set("n", "<leader>dvc", "<cmd>DiffviewClose<CR>")
 
 vim.keymap.set("v", "<leader>y", [["+y]])
 vim.keymap.set("v", "<leader>Y", [["+Y]])
@@ -138,8 +139,3 @@ vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', {})
 vim.keymap.set("n", "<leader>cd", "<cmd>Copilot disable<CR>")
 vim.keymap.set("n", "<leader>ce", "<cmd>Copilot enable<CR>")
 
-vim.keymap.set('n', '<leader>fm', function()
-  local searchWord = vim.fn.input("Search for: ")
-  vim.cmd(string.format("'a,'b/%s", searchWord))
-end, { noremap = true })
-vim.keymap.set('n', '<leader>dm', '<cmd>delmarks ab<cr>', {})
