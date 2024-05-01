@@ -2,7 +2,7 @@ vim.opt.guicursor = ""
 vim.g.mapleader = " "
 
 vim.opt.nu = true
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 vim.syntax = true
 
 vim.opt.tabstop = 2
@@ -29,6 +29,7 @@ vim.opt.scr = 8
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
+vim.opt.splitright = true
 
 vim.opt.updatetime = 50
 vim.opt.cursorline = true
@@ -60,7 +61,7 @@ vim.cmd [[colorscheme vscode]]
 -- ***************
 -- --- KEYMAPS ---
 -- ***************
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -78,10 +79,11 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader><leader>q", "<cmd>cclose<CR>")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
@@ -138,4 +140,17 @@ vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {})
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', {})
 vim.keymap.set("n", "<leader>cd", "<cmd>Copilot disable<CR>")
 vim.keymap.set("n", "<leader>ce", "<cmd>Copilot enable<CR>")
+vim.keymap.set("n", "<leader>ssl", "<cmd>vertical resize +30<CR>")
+vim.keymap.set("n", "<leader>ssh", "<cmd>vertical resize -30<CR>")
+-- vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "open parent directory" })
 
+-- vim.keymap.set("n", "<leader>fi", vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}}))
+
+
+-- highlight yanked text for 200ms using the "Visual" highlight group
+vim.cmd [[
+augroup highlight_yank
+autocmd!
+au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
+augroup END
+]]

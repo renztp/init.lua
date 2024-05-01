@@ -1,5 +1,8 @@
 return {
   {
+    'ThePrimeagen/git-worktree.nvim'
+  },
+  {
     "tpope/vim-fugitive",
   },
   {

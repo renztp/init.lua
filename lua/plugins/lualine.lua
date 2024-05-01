@@ -4,13 +4,15 @@ return {
   config = function()
     require('lualine').setup({
       options = {
-        theme = 'vscode',
+        theme = 'ayu_mirage',
       },
+      section_separators = {left = '', right = ''},
+      component_separators = {left = '|', right = '|'},
       sections = {
-        lualine_a = { 'branch' },
-        lualine_b = { 'diagnostics' },
+        lualine_a = { 'branch', },
+        lualine_b = { 'diff', 'diagnostics' },
         lualine_c = { 'filename' },
-        lualine_x = { 'diff', 'encoding', 'fileformat', 'filetype' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
       },

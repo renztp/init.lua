@@ -125,6 +125,9 @@ return {
     -- vim.keymap.set('n', '<leader><leader>p', builtin.lsp_dynamic_workspace_symbols, {})
     vim.keymap.set('n', '<C-f>', builtin.current_buffer_fuzzy_find, {})
     vim.keymap.set('n', '<leader>fs', require("telescope").extensions.live_grep_args.live_grep_args, { noremap = true })
+    vim.keymap.set('n', '<leader>gws', require("telescope").extensions.git_worktree.git_worktrees, { noremap = true })
+    vim.keymap.set('n', '<leader>gwc', require('telescope').extensions.git_worktree.create_git_worktree, { noremap = true })
+    vim.keymap.set('n', '<leader><leader>gwd', require("git-worktree").delete_worktree, { noremap = true })
     vim.keymap.set('n', 'gr', builtin.lsp_references, {})
   end
 }

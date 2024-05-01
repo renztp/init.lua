@@ -27,6 +27,21 @@ return {
   },
   { 'RRethy/vim-illuminate' },
   {
-    'tpope/vim-commentary'
-  }
+    'numToStr/Comment.nvim',
+    opts = {
+      -- add any options here
+    },
+    lazy = false,
+  },
+
+  -- {
+  --   'tpope/vim-commentary'
+  -- },
+  {
+    'opdavies/toggle-checkbox.nvim',
+    config = function()
+      vim.keymap.set("n", "<leader>cb", ":lua require('toggle-checkbox').toggle()<CR>")
+      vim.keymap.set("n", "<leader>cc", ":normal i- [ ] <Esc>A")
+    end
+  },
 }
