@@ -98,6 +98,18 @@ return {
             preview_width = 0.4,
           }
         },
+        live_grep_args = {
+          theme = "dropdown",
+          layout_strategy = 'horizontal',
+          show_line = false,
+          path_display = filenameFirst,
+          wrap_results = true,
+          layout_config = {
+            width = 0.99,
+            height = 0.99,
+            preview_width = 0.4,
+          }
+        },
         lsp_document_symbols = {
           theme = "dropdown",
           layout_strategy = 'horizontal',
@@ -129,5 +141,8 @@ return {
     vim.keymap.set('n', '<leader>gwc', require('telescope').extensions.git_worktree.create_git_worktree, { noremap = true })
     vim.keymap.set('n', '<leader><leader>gwd', require("git-worktree").delete_worktree, { noremap = true })
     vim.keymap.set('n', 'gr', builtin.lsp_references, {})
+
+    --set line number to the preview window
+    vim.cmd "autocmd User TelescopePreviewerLoaded setlocal number"
   end
 }

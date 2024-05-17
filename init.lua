@@ -38,7 +38,7 @@ vim.opt.wrap = true
 vim.opt.background = "dark"
 --
 vim.opt.clipboard = "unnamedplus"
-vim.opt.mouse = a
+vim.opt.mouse=""
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -142,6 +142,10 @@ vim.keymap.set("n", "<leader>cd", "<cmd>Copilot disable<CR>")
 vim.keymap.set("n", "<leader>ce", "<cmd>Copilot enable<CR>")
 vim.keymap.set("n", "<leader>ssl", "<cmd>vertical resize +30<CR>")
 vim.keymap.set("n", "<leader>ssh", "<cmd>vertical resize -30<CR>")
+
+
+vim.keymap.set('n', '<leader>du', "<cmd>DBUI<CR>")
+vim.keymap.set('n', '<leader>di', "<cmd>DBUIToggle<CR>")
 -- vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "open parent directory" })
 
 -- vim.keymap.set("n", "<leader>fi", vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}}))
