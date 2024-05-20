@@ -44,6 +44,7 @@ return {
     -- end,
     config = function()
       local lsp_zero = require("lsp-zero")
+      local lspconfig = require("lspconfig")
 
       lsp_zero.on_attach(function(client, bufnr)
         lsp_zero.default_keymaps({ buffer = bufnr })
@@ -59,13 +60,26 @@ return {
       end
 
 
-      require('lspconfig').tsserver.setup({
+      lspconfig.tsserver.setup({
         on_attach = on_attach,
         capabilities = capabilities,
         commands = {
           OrganizeImports = {
             organize_imports,
             description = "Organize Imports"
+          }
+        }
+      })
+
+      lspconfig.emmet_ls.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetypes = { "html", "css", "javascriptreact", "typescriptreact" },
+        init_options = {
+          html = {
+            options = {
+              ["bem.enabled"] = true
+            }
           }
         }
       })
