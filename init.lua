@@ -38,7 +38,7 @@ vim.opt.wrap = true
 vim.opt.background = "dark"
 --
 vim.opt.clipboard = "unnamedplus"
-vim.opt.mouse=""
+vim.opt.mouse=a
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -114,13 +114,13 @@ vim.api.nvim_set_keymap('n', '<C-u>',
 vim.keymap.set("n", "<leader>dh", "<cmd>nohl<CR>")
 vim.keymap.set("n", "<leader>cod", "<cmd>Copilot disable<CR>")
 vim.keymap.set("n", "<leader>coa", "<cmd>Copilot enable<CR>")
-vim.keymap.set("n", "gf", function()
-  if require("obsidian").util.cursor_on_markdown_link() then
-    return "<cmd>ObsidianFollowLink<CR>"
-  else
-    return "gf"
-  end
-end, { noremap = false, expr = true })
+-- vim.keymap.set("n", "gf", function()
+--   if require("obsidian").util.cursor_on_markdown_link() then
+--     return "<cmd>ObsidianFollowLink<CR>"
+--   else
+--     return "gf"
+--   end
+-- end, { noremap = false, expr = true })
 
 vim.keymap.set("n", "<leader>gbt", "<cmd>GitBlameToggle<CR>")
 
@@ -129,7 +129,7 @@ vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', {})
 vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', {})
 vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', {})
 vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', {})
-vim.keymap.set('n', 'gr', function() require('telescope.builtin').lsp_references() end, {})
+-- vim.keymap.set('n', 'gr', function() require('telescope.builtin').lsp_references() end, {})
 vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', {})
 vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', {})
 vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', {})
@@ -160,10 +160,16 @@ augroup END
 ]]
 
 -- restore the session for the current directory
-vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
+-- vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
 
 -- restore the last session
 vim.api.nvim_set_keymap("n", "<leader>ps", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
 
 -- stop Persistence => session won't be saved on exit
-vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
+-- vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
+
+vim.keymap.set('n', '<leader><leader>tn', '<cmd>tabnew<cr>')
+vim.keymap.set('n', '<leader><leader>tc', '<cmd>tabclose<cr>')
+vim.keymap.set('n', '<leader><leader>to', '<cmd>tabonly<cr>')
+vim.keymap.set('n', '<leader><leader>tl', '<cmd>tabnext<cr>')
+vim.keymap.set('n', '<leader><leader>th', '<cmd>tabprevious<cr>')
