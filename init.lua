@@ -173,3 +173,17 @@ vim.keymap.set('n', '<leader><leader>tc', '<cmd>tabclose<cr>')
 vim.keymap.set('n', '<leader><leader>to', '<cmd>tabonly<cr>')
 vim.keymap.set('n', '<leader><leader>tl', '<cmd>tabnext<cr>')
 vim.keymap.set('n', '<leader><leader>th', '<cmd>tabprevious<cr>')
+
+local fn, cmd = vim.fn, vim.cmd
+
+function my_statusline()
+  local branch = fn.FugitiveHead()
+
+  if branch and #branch > 0 then
+    branch = '  '..branch
+  end
+
+  return branch..' %f%m%=%l:%c '
+end
+
+cmd[[ set statusline=%!luaeval('my_statusline()') ]]
