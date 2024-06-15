@@ -96,13 +96,25 @@ return {
           always_show_bufferline = true,
           sort_by = 'id',
           highlights = {
-            buffer_visible = {
-              fg = "#ffffff",
-              bg = "#ffffff"
+            -- buffer_visible = {
+            --   fg = "#ffffff",
+            --   bg = "#ffffff"
+            -- },
+            -- buffer_selected = {
+            --   fg = "#ffffff",
+            --   bg = "#ffffff",
+            -- },
+            background = {
+              fg = "#000000",
+              bg = "#000000"
             },
-            buffer_selected = {
-              fg = "#fffff",
-              bg = "#fffff",
+            tab_separator = {
+              fg = "#000000",
+              bg = "#000000"
+            },
+            separator = {
+              fg = "#000000",
+              bg = "#000000"
             },
           }
         }
