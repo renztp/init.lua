@@ -36,7 +36,7 @@ return {
     dependencies = {
       { 'neovim/nvim-lspconfig' }
     },
-    lazy = true,
+    lazy = false,
     -- init = function()
     --   -- Disable automatic setup, we are doing it manually
     --   vim.g.lsp_zero_extend_cmp = 0
@@ -61,6 +61,17 @@ return {
 
 
       lspconfig.tsserver.setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        commands = {
+          OrganizeImports = {
+            organize_imports,
+            description = "Organize Imports"
+          }
+        }
+      })
+
+      lspconfig.svelte.setup({
         on_attach = on_attach,
         capabilities = capabilities,
         commands = {
@@ -98,7 +109,6 @@ return {
     lazy = false,
     config = true,
   },
-
   -- Autocompletion
   {
     "L3MON4D3/LuaSnip",
@@ -197,6 +207,7 @@ return {
   -- LSP
   {
     'neovim/nvim-lspconfig',
+    lazy = false,
     cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {

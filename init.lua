@@ -163,10 +163,16 @@ augroup END
 -- vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
 
 -- restore the last session
-vim.api.nvim_set_keymap("n", "<leader>ps", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
+-- vim.api.nvim_set_keymap("n", "<leader>ps", [[<cmd>lua require("persistence").load({ last = true })<cr>]], {})
+-- vim.keymap.set('n', '<leader>ps', '<cmd>w<CR>')
 
 -- stop Persistence => session won't be saved on exit
 -- vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
+
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+vim.keymap.set('n', '<M-h>', "<cmd>bprev<CR>")
+vim.keymap.set('n', '<M-l>', "<cmd>bnext<CR>")
 
 vim.keymap.set('n', '<leader><leader>tn', '<cmd>tabnew<cr>')
 vim.keymap.set('n', '<leader><leader>tc', '<cmd>tabclose<cr>')

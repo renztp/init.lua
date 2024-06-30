@@ -33,7 +33,7 @@ return {
             path_display = { "smart" },
           },
           layout_config = {
-            width = 0.9,
+            width = 0.7,
             height = 0.6,
             prompt_position = "top",
             flex = {

@@ -114,7 +114,9 @@ return {
     config = function()
       local hop = require('hop').setup()
       vim.keymap.set('n', '<leader><leader>w', '<cmd>HopWordAC<cr>')
+      vim.keymap.set('v', '<leader><leader>w', '<cmd>HopWordAC<cr>')
       vim.keymap.set('n', '<leader><leader>b', '<cmd>HopWordBC<cr>')
+      vim.keymap.set('v', '<leader><leader>b', '<cmd>HopWordBC<cr>')
     end
   }
 }
