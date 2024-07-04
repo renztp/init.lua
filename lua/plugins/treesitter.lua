@@ -7,6 +7,8 @@ local M = {
       -- ensure_installed = "all",
       ensure_installed = {
         "tsx",
+        "typescript",
+        "javascript",
         "php",
         "json",
         "yaml",

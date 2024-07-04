@@ -85,14 +85,7 @@ return {
       -- lspconfig.emmet_ls.setup({
       --   on_attach = on_attach,
       --   capabilities = capabilities,
-      --   filetypes = { "html", "css", "javascriptreact", "typescriptreact", "php" },
-      --   init_options = {
-      --     html = {
-      --       options = {
-      --         ["bem.enabled"] = true
-      --       }
-      --     }
-      --   }
+      --   filetypes = { "html", "css", "javascriptreact", "javascript", "typescript", "typescriptreact", "php" },
       -- })
 
       local function format_and_organize_imports()

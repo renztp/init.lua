@@ -179,3 +179,5 @@ vim.keymap.set('n', '<leader><leader>tc', '<cmd>tabclose<cr>')
 vim.keymap.set('n', '<leader><leader>to', '<cmd>tabonly<cr>')
 vim.keymap.set('n', '<leader><leader>tl', '<cmd>tabnext<cr>')
 vim.keymap.set('n', '<leader><leader>th', '<cmd>tabprevious<cr>')
+
+vim.keymap.set('n', '<leader>he', '<cmd>TSEnable highlight<cr>')

@@ -24,21 +24,24 @@ return {
     require('telescope').setup({
       pickers = {
         find_files = {
-          theme = "dropdown",
+          theme = "ivy",
           previewer = false,
-          layout_strategy = 'vertical',
+          -- layout_strategy = 'vertical',
           wrap_results = true,
           path_display = filenameFirst,
           lsp_references = {
             path_display = { "smart" },
           },
           layout_config = {
-            width = 0.7,
-            height = 0.6,
-            prompt_position = "top",
-            flex = {
-              flip_columns = 130
-            }
+            -- bottom_pane = {
+            --   height = 25
+            -- },
+            -- width = 0.9,
+            -- height = 0.6,
+            -- prompt_position = "top",
+            -- flex = {
+            --   flip_columns = 130
+            -- }
           }
         },
         git_files = {
@@ -86,18 +89,30 @@ return {
           }
         },
         live_grep = {
-          theme = "dropdown",
-          layout_strategy = 'horizontal',
+          theme = "ivy",
           show_line = false,
           path_display = filenameFirst,
           wrap_results = true,
           layout_config = {
-            width = 0.99,
-            height = 0.99,
-            prompt_position = "top",
+            -- width = 0.99,
+            -- height = 0.99,
+            -- prompt_position = "top",
             preview_width = 0.4,
           }
         },
+        -- live_grep = {
+        --   theme = "dropdown",
+        --   layout_strategy = 'horizontal',
+        --   show_line = false,
+        --   path_display = filenameFirst,
+        --   wrap_results = true,
+        --   layout_config = {
+        --     width = 0.99,
+        --     height = 0.99,
+        --     prompt_position = "top",
+        --     preview_width = 0.4,
+        --   }
+        -- },
         lsp_document_symbols = {
           theme = "dropdown",
           layout_strategy = 'horizontal',
