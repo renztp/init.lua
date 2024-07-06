@@ -25,7 +25,7 @@ return {
       pickers = {
         find_files = {
           theme = "ivy",
-          previewer = false,
+          -- previewer = false,
           -- layout_strategy = 'vertical',
           wrap_results = true,
           path_display = filenameFirst,
@@ -33,16 +33,22 @@ return {
             path_display = { "smart" },
           },
           layout_config = {
-            -- bottom_pane = {
-            --   height = 25
-            -- },
-            -- width = 0.9,
-            -- height = 0.6,
+            -- width = 0.99,
+            -- height = 0.99,
             -- prompt_position = "top",
-            -- flex = {
-            --   flip_columns = 130
-            -- }
+            preview_width = 0.4,
           }
+          -- layout_config = {
+          --   -- bottom_pane = {
+          --   --   height = 25
+          --   -- },
+          --   -- width = 0.9,
+          --   -- height = 0.6,
+          --   -- prompt_position = "top",
+          --   -- flex = {
+          --   --   flip_columns = 130
+          --   -- }
+          -- }
         },
         git_files = {
           theme = "dropdown",

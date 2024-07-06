@@ -118,5 +118,11 @@ return {
       vim.keymap.set('n', '<leader><leader>b', '<cmd>HopWordBC<cr>')
       vim.keymap.set('v', '<leader><leader>b', '<cmd>HopWordBC<cr>')
     end
+  },
+  {
+    'mattn/emmet-vim',
+    config = function()
+      vim.g.user_emmet_leader_key = '<C-y>'
+    end
   }
 }
