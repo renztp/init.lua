@@ -1,7 +1,7 @@
 # Personal Neovim Configuration
 MUST INSTALL `ripgrep` for telescope, and setup `nvim-tmux-navigation` properly.
 
-![image](recent-neovim.png)
+![image](recent-nvim.png)
 
 
 ### Plugins Included
