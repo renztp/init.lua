@@ -23,6 +23,19 @@ return {
   config = function()
     require('telescope').setup({
       pickers = {
+        current_buffer_fuzzy_find = {
+          theme = "dropdown",
+          layout_strategy = 'horizontal',
+          show_line = false,
+          path_display = filenameFirst,
+          wrap_results = true,
+          layout_config = {
+            width = 0.99,
+            height = 0.99,
+            prompt_position = "top",
+            preview_width = 0.6,
+          }
+        },
         find_files = {
           theme = "ivy",
           -- previewer = false,
@@ -37,6 +50,33 @@ return {
             -- height = 0.99,
             -- prompt_position = "top",
             preview_width = 0.4,
+          }
+          -- layout_config = {
+          --   -- bottom_pane = {
+          --   --   height = 25
+          --   -- },
+          --   -- width = 0.9,
+          --   -- height = 0.6,
+          --   -- prompt_position = "top",
+          --   -- flex = {
+          --   --   flip_columns = 130
+          --   -- }
+          -- }
+        },
+        git_status = {
+          theme = "ivy",
+          previewer = false,
+          -- layout_strategy = 'vertical',
+          wrap_results = true,
+          path_display = filenameFirst,
+          lsp_references = {
+            path_display = { "smart" },
+          },
+          layout_config = {
+            -- width = 0.99,
+            -- height = 0.99,
+            -- prompt_position = "top",
+            -- preview_width = 0.4,
           }
           -- layout_config = {
           --   -- bottom_pane = {
@@ -68,18 +108,24 @@ return {
           }
         },
         buffers = {
-          theme = "dropdown",
+          theme = "ivy",
           previewer = false,
           wrap_results = true,
           path_display = filenameFirst,
           layout_config = {
-            width = 0.9,
-            height = 0.6,
-            prompt_position = "top",
-            flex = {
-              flip_columns = 130
-            }
+            -- width = 0.99,
+            -- height = 0.99,
+            -- prompt_position = "top",
+            preview_width = 0.4,
           }
+          -- layout_config = {
+          --   width = 0.9,
+          --   height = 0.6,
+          --   prompt_position = "top",
+          --   flex = {
+          --     flip_columns = 130
+          --   }
+          -- }
         },
         lsp_references = {
           theme = "ivy",
@@ -143,7 +189,7 @@ return {
           wrap_results = true,
           layout_config = {
             width = 0.99,
-            height = 0.99,
+            height = 0.85,
             prompt_position = "top",
             preview_width = 0.4,
           }
@@ -153,6 +199,7 @@ return {
     local telescope = require('telescope')
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<C-p>', builtin.find_files)
+    vim.keymap.set('n', '<leader>pg', builtin.git_status, {})
     vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
     vim.keymap.set('n', '<leader><leader>p', "<cmd>Telescope builtin<CR>")
     vim.keymap.set('n', '<leader>pp', builtin.commands, {})

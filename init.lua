@@ -1,3 +1,7 @@
+if vim.g.neovide then
+  vim.o.guifont = "Liga SFMono Nerd Font:h9.5"   -- text below applies for VimScript
+end
+
 vim.opt.guicursor = ""
 vim.g.mapleader = " "
 
@@ -18,8 +22,6 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.conceallevel = 1
 
-
-
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
@@ -35,10 +37,17 @@ vim.opt.updatetime = 50
 vim.opt.cursorline = true
 vim.opt.wrap = true
 
+vim.opt.foldcolumn = '1'
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = false
+
+-- vim.keymap.set('n', '<leader>ff', require('ufo').openAllFolds)
+
 vim.opt.background = "dark"
 --
 vim.opt.clipboard = "unnamedplus"
-vim.opt.mouse=a
+vim.opt.mouse = a
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -47,7 +56,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",     -- latest stable release
     lazypath,
   })
 end
@@ -55,8 +64,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
+
+-- vim.api.nvim_create_autocmd('ColorScheme', {
+--   command = [[highlight CursorLine guibg=NONE cterm=underline]]
+-- })
+
 -- Colorscheme
 vim.cmd [[colorscheme vscode]]
+-- vim.cmd [[colorscheme kanagawa-dragon]]
+-- vim.cmd [[colorscheme nightfox]]
 
 -- ***************
 -- --- KEYMAPS ---
@@ -104,12 +120,12 @@ vim.keymap.set("v", "<leader>P", [["+P]])
 vim.keymap.set("n", "<F6>", "<cmd>term python3 %<CR>")
 vim.keymap.set("n", "<F5>", "<cmd>CompileAndRunTS<CR>")
 -- vim.keymap.set("n", "<leader>fc", "<cmd>LspZeroFormat<CR>")
-vim.api.nvim_set_keymap('n', '<C-d>',
-  "v:count == 0 ? luaeval('vim.api.nvim_win_get_height(0)') / 3 .. '<C-d>zz' : '<C-d>zz'",
-  { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-u>',
-  "v:count == 0 ? luaeval('vim.api.nvim_win_get_height(0)') / 3 .. '<C-u>zz' : '<C-u>zz'",
-  { noremap = true, expr = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<C-d>',
+--   "v:count == 0 ? 8 .. '<C-d>zz' : '<C-d>zz'",
+--   { noremap = true, expr = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<C-u>',
+--   "v:count == 0 ? 8 .. '<C-u>zz' : '<C-u>zz'",
+--   { noremap = true, expr = true, silent = true })
 
 vim.keymap.set("n", "<leader>dh", "<cmd>nohl<CR>")
 vim.keymap.set("n", "<leader>cod", "<cmd>Copilot disable<CR>")
@@ -133,7 +149,7 @@ vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', {})
 vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', {})
 vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', {})
 vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', {})
-vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', {})
+vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.code_action()<cr>', {})
 
 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', {})
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {})
@@ -146,10 +162,12 @@ vim.keymap.set("n", "<leader>ssh", "<cmd>vertical resize -30<CR>")
 
 vim.keymap.set('n', '<leader>du', "<cmd>DBUI<CR>")
 vim.keymap.set('n', '<leader>di', "<cmd>DBUIToggle<CR>")
+
 -- vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "open parent directory" })
 
 -- vim.keymap.set("n", "<leader>fi", vim.lsp.buf.execute_command({command = "_typescript.organizeImports", arguments = {vim.fn.expand("%:p")}}))
 
+vim.keymap.set('n', '<C-f>', '/\\c')
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd [[
@@ -169,7 +187,7 @@ augroup END
 -- stop Persistence => session won't be saved on exit
 -- vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
 
-vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+-- vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set('n', '<M-h>', "<cmd>bprev<CR>")
 vim.keymap.set('n', '<M-l>', "<cmd>bnext<CR>")
@@ -181,3 +199,20 @@ vim.keymap.set('n', '<leader><leader>tl', '<cmd>tabnext<cr>')
 vim.keymap.set('n', '<leader><leader>th', '<cmd>tabprevious<cr>')
 
 vim.keymap.set('n', '<leader>he', '<cmd>TSEnable highlight<cr>')
+vim.keymap.set('n', '<leader>ps', '<cmd>w<CR>')
+local diagnostics = {
+  virtual_text = false,   -- Disable builtin virtual text diagnostic
+  virtual_improved = {
+    current_line = 'only',
+  },
+}
+vim.diagnostic.config(diagnostics)
+
+vim.keymap.set('n', '<leader>cf', function()
+  local filepath = vim.fn.expand('%:p')
+  local filename = vim.fn.fnamemodify(filepath, ':t')
+  vim.fn.setreg('+', filename)
+  print('Copied filename to clipboard: ' .. filename)
+end)
+
+vim.keymap.set('n', '<F9>', '<cmd>SymbolsOutline<CR>');

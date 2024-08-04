@@ -124,5 +124,104 @@ return {
     config = function()
       vim.g.user_emmet_leader_key = '<C-y>'
     end
+  },
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    config = function()
+      require('toggleterm').setup {
+        open_mapping = [[<F8>]],
+        float_opts = {
+          border = 'single',
+        }
+      }
+      local trim_spaces = true
+      vim.keymap.set("v", "<space>s", function()
+        require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
+      end)
+      require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
+      require("toggleterm").send_lines_to_terminal("visual_selection", trim_spaces, { args = vim.v.count })
+      vim.keymap.set("n", [[<leader><c-\>]], function()
+        set_opfunc(function(motion_type)
+          require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
+        end)
+        vim.api.nvim_feedkeys("g@", "n", false)
+      end)
+      -- Double the command to send line to terminal
+      vim.keymap.set("n", [[<leader><c-\><c-\>]], function()
+        set_opfunc(function(motion_type)
+          require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
+        end)
+        vim.api.nvim_feedkeys("g@_", "n", false)
+      end)
+      -- Send whole file
+      vim.keymap.set("n", [[<leader><leader><c-\>]], function()
+        set_opfunc(function(motion_type)
+          require("toggleterm").send_lines_to_terminal(motion_type, false, { args = vim.v.count })
+        end)
+        vim.api.nvim_feedkeys("ggg@G''", "n", false)
+      end)
+    end
+  },
+  {
+    'simrat39/symbols-outline.nvim',
+    config = function()
+      require('symbols-outline').setup({})
+    end
+  },
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    config = function()
+      require("codesnap").setup({
+        show_workspace = true,
+        has_breadcrumbs = true,
+        has_line_number = true,
+        bg_color = "#535c68",
+        bg_padding = 20,
+        mac_window_bar = false,
+        code_font_family = "Fira Mono",
+        watermark = "",
+        min_width = 100,
+      })
+    end
+  },
+  -- {
+  --   "karb94/neoscroll.nvim",
+  --   config = function()
+  --     local neoscroll = require('neoscroll')
+  --     neoscroll.setup({
+  --       mappings = { -- Keys to be mapped to their corresponding default scrolling animation
+  --         '<C-u>', '<C-d>',
+  --         '<C-b>', '<C-f>',
+  --         '<C-y>', '<C-e>',
+  --         'zt', 'zz', 'zb',
+  --       },
+  --       hide_cursor = true,          -- Hide cursor while scrolling
+  --       stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+  --       respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+  --       cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+  --       easing = 'liner',            -- Default easing function
+  --       pre_hook = nil,              -- Function to run before the scrolling animation starts
+  --       post_hook = nil,             -- Function to run after the scrolling animation ends
+  --       performance_mode = false,    -- Disable "Performance Mode" on all buffers.
+  --     })
+  --     local keymap = {
+  --       ["<C-u>"] = function() neoscroll.ctrl_u({ duration = 250, easing = 'sine' }) end,
+  --       ["<C-d>"] = function() neoscroll.ctrl_d({ duration = 250, easing = 'sine' }) end,
+  --     }
+  --     local modes = { 'n', 'v', 'x' }
+  --     for key, func in pairs(keymap) do
+  --       vim.keymap.set(modes, key, func)
+  --     end
+  --   end
+  -- }
+  -- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
+    config = function()
+      require('ufo').setup()
+    end
   }
 }
