@@ -16,7 +16,7 @@ return {
     lazy = false,
     config = function()
       require('monokai-pro').setup({
-        transparent_background = false,
+        transparent_background = true,
         terminal_colors = true,
         devicons = true, -- highlight the icons of `nvim-web-devicons`
         styles = {
@@ -29,7 +29,7 @@ return {
           annotation = { italic = true },
           tag_attribute = { italic = true }, -- attribute of tag in reactjs
         },
-        inc_search = "background",           -- underline | background
+        inc_search = "underline",           -- underline | background
       })
 
       -- vim.cmd('colorscheme monokai-pro-ristretto')
@@ -37,5 +37,13 @@ return {
   },
   {
     "rebelot/kanagawa.nvim",
+  },
+  {
+    'navarasu/onedark.nvim',
+    config = function()
+      require('onedark').setup {
+        style = 'darker',
+      }
+    end
   }
 }

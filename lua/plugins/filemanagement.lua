@@ -13,7 +13,8 @@ return {
         },
         sort_by = "case_sensitive",
         view = {
-          width = 40,
+          width = 60,
+          side = "left"
         },
         renderer = {
           group_empty = true,
@@ -133,5 +134,27 @@ return {
     opts = {},
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("oil").setup({
+        -- Your configuration comes here
+        float = {
+          -- Padding around the floating window
+          padding = 2,
+          max_width = 80,
+          max_height = 60,
+          border = "rounded",
+          win_options = {
+            winblend = 0,
+          },
+          -- preview_split: Split direction: "auto", "left", "right", "above", "below".
+          preview_split = "auto",
+          -- This is the config that will be passed to nvim_open_win.
+          -- Change values here to customize the layout
+          override = function(conf)
+            return conf
+          end,
+        },
+      })
+    end
   }
 }

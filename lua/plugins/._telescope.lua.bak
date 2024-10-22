@@ -39,8 +39,8 @@ return {
           }
         },
         find_files = {
-          theme = "dropdown",
-          previewer = false,
+          theme = "ivy",
+          -- previewer = false,
           -- layout_strategy = 'vertical',
           wrap_results = true,
           path_display = filenameFirst,
@@ -48,8 +48,8 @@ return {
             path_display = { "smart" },
           },
           layout_config = {
-            width = 0.45,
-            height = 0.60,
+            -- width = 0.99,
+            -- height = 0.99,
             -- prompt_position = "top",
             -- preview_width = 0.4,
           }
@@ -137,9 +137,9 @@ return {
           wrap_results = true,
           layout_config = {
             width = 0.99,
-            height = 0.60,
+            height = 0.99,
             prompt_position = "top",
-            preview_width = 0.6,
+            preview_width = 0.4,
           }
         },
         live_grep = {

@@ -1,4 +1,25 @@
 return {
+  { 
+    'dnlhc/glance.nvim',
+    config = function()
+      require('glance').setup({
+        height = 26, -- Height of the window
+        border = {
+          enable = false, -- Show window borders. Only horizontal borders allowed
+          top_char = '―',
+          bottom_char = '―',
+        },
+        list = {
+          position = 'right', -- Position of the list window 'left'|'right'
+          width = 0.33, -- 33% width relative to the active window, min 0.1, max 0.5
+        },
+        theme = { -- This feature might not work properly in nvim-0.7.2
+          enable = true, -- Will generate colors for the plugin based on your current colorscheme
+          mode = 'auto', -- 'brighten'|'darken'|'auto', 'auto' will set mode based on the brightness of your colorscheme
+        },
+      })
+    end
+  },
   -- {
   --   "folke/noice.nvim",
   --   event = "VeryLazy",
@@ -122,7 +143,6 @@ return {
   {
     'mattn/emmet-vim',
     config = function()
-      vim.g.user_emmet_leader_key = '<C-y>'
     end
   },
   {
@@ -221,7 +241,11 @@ return {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
     config = function()
-      require('ufo').setup()
+      require('ufo').setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          return {'treesitter', 'indent'}
+        end
+      })
     end
-  }
+  },
 }

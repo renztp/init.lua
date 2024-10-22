@@ -1,7 +1,3 @@
-if vim.g.neovide then
-  vim.o.guifont = "Liga SFMono Nerd Font:h9.5"   -- text below applies for VimScript
-end
-
 vim.opt.guicursor = ""
 vim.g.mapleader = " "
 
@@ -65,14 +61,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 
--- vim.api.nvim_create_autocmd('ColorScheme', {
+-- vimapi.nvim_create_autocmd('ColorScheme', {
 --   command = [[highlight CursorLine guibg=NONE cterm=underline]]
 -- })
-
--- Colorscheme
-vim.cmd [[colorscheme vscode]]
--- vim.cmd [[colorscheme kanagawa-dragon]]
--- vim.cmd [[colorscheme nightfox]]
 
 -- ***************
 -- --- KEYMAPS ---
@@ -142,14 +133,17 @@ vim.keymap.set("n", "<leader>gbt", "<cmd>GitBlameToggle<CR>")
 
 vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', {})
 vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', {})
+-- vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', {})
 vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', {})
-vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', {})
+-- vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', {})
+vim.keymap.set('n', 'gi', '<cmd>Glance implementations<cr>', {})
 vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', {})
 -- vim.keymap.set('n', 'gr', function() require('telescope.builtin').lsp_references() end, {})
+vim.keymap.set('n', 'gr', '<cmd>Glance references<cr>', {})
 vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', {})
 vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', {})
 vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', {})
-vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.code_action()<cr>', {})
+vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', {})
 
 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', {})
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {})
@@ -171,10 +165,10 @@ vim.keymap.set('n', '<C-f>', '/\\c')
 
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd [[
-augroup highlight_yank
-autocmd!
-au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
-augroup END
+  augroup highlight_yank
+  autocmd!
+  au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=200})
+  augroup END
 ]]
 
 -- restore the session for the current directory
@@ -187,7 +181,7 @@ augroup END
 -- stop Persistence => session won't be saved on exit
 -- vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
 
--- vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+-- vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set('n', '<M-h>', "<cmd>bprev<CR>")
 vim.keymap.set('n', '<M-l>', "<cmd>bnext<CR>")
@@ -216,3 +210,60 @@ vim.keymap.set('n', '<leader>cf', function()
 end)
 
 vim.keymap.set('n', '<F9>', '<cmd>SymbolsOutline<CR>');
+vim.keymap.set('n','<M-[>', '<C-w>30<')
+vim.keymap.set('n','<M-]>', '<C-w>30>')
+
+vim.api.nvim_command('au BufRead,BufNewFile *.njk set filetype=html')
+vim.api.nvim_command('au BufRead,BufNewFile *.ejs set filetype=html')
+
+vim.api.nvim_create_user_command("Cppath", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied "' .. path .. '" to clipboard')
+end, {})
+
+vim.keymap.set('n', '<leader>cp', '<cmd>Cppath<CR>')
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "dbout",
+  callback = function()
+    vim.wo.foldenable = false
+  end,
+})
+
+vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+vim.keymap.set('n', 'zP', function()
+  require("ufo.preview"):peekFoldedLinesUnderCursor()
+end)
+
+
+
+
+-- Colorscheme
+vim.api.nvim_create_autocmd('ColorScheme', {
+  command = [[highlight CursorLine guibg=#333333 cterm=underline]]
+})
+vim.cmd [[colorscheme vscode]]
+-- vim.cmd [[colorscheme kanagawa-dragon]]
+-- vim.cmd [[colorscheme nightfox]]
+
+
+local lsp = vim.lsp.buf
+local function copy_function_names()
+  lsp.document_symbol({}, function(err, result, ctx)
+    if err or not result then return end
+    local function_names = {}
+    for _, symbol in ipairs(result) do
+      if symbol.kind == 6 then -- 12 is the LSP kind for functions
+        table.insert(function_names, symbol.name)
+      end
+    end
+    -- Yank function names to the unnamed register
+    vim.fn.setreg('"', table.concat(function_names, "\n"))
+    print("Yanked function names to unnamed register")
+  end)
+end
+
+-- Call the function
+vim.keymap.set('n', '<leader><leader>cf', copy_function_names)
+vim.keymap.set('n', '<C-g>', ':', { noremap = false, silent = false })

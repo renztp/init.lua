@@ -1,6 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
+    "onsails/lspkind-nvim",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
@@ -11,7 +12,8 @@ return {
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
     "j-hui/fidget.nvim",
-    "rafamadriz/friendly-snippets"
+    "rafamadriz/friendly-snippets",
+    "ray-x/lsp_signature.nvim",
   },
 
   config = function()
@@ -67,6 +69,18 @@ return {
         end,
       }
     })
+
+    require "lsp_signature".setup({
+      bind = true, -- This is mandatory, otherwise border config won't get registered.
+      hint_prefix = "",
+      hint_enable = false,
+      handler_opts = {
+        border = "rounded"
+      }
+    })
+    vim.keymap.set({ 'n' }, '<C-k>', function()
+      require('lsp_signature').toggle_float_win()
+    end, { silent = true, noremap = true, desc = 'toggle signature' })
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
