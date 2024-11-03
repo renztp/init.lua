@@ -243,8 +243,9 @@ end)
 vim.api.nvim_create_autocmd('ColorScheme', {
   command = [[highlight CursorLine guibg=#333333 cterm=underline]]
 })
-vim.cmd [[colorscheme vscode]]
--- vim.cmd [[colorscheme kanagawa-dragon]]
+-- vim.cmd [[colorscheme u]]
+vim.cmd [[colorscheme kanagawa-dragon]]
+-- vim.cmd [[colorscheme habamax]]
 -- vim.cmd [[colorscheme nightfox]]
 
 
