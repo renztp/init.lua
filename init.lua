@@ -268,3 +268,16 @@ end
 -- Call the function
 vim.keymap.set('n', '<leader><leader>cf', copy_function_names)
 vim.keymap.set('n', '<C-g>', ':', { noremap = false, silent = false })
+
+-- Create an autocommand group to manage Copilot settings
+vim.api.nvim_create_augroup("CopilotDisable", { clear = true })
+
+-- Define the autocommand to disable Copilot for specific file types
+vim.api.nvim_create_autocmd("FileType", {
+  group = "CopilotDisable",
+  pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+  callback = function()
+    vim.b.copilot_enabled = false
+  end,
+})
+
