@@ -273,11 +273,11 @@ vim.keymap.set('n', '<C-g>', ':', { noremap = false, silent = false })
 vim.api.nvim_create_augroup("CopilotDisable", { clear = true })
 
 -- Define the autocommand to disable Copilot for specific file types
-vim.api.nvim_create_autocmd("FileType", {
-  group = "CopilotDisable",
-  pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-  callback = function()
-    vim.b.copilot_enabled = false
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = "CopilotDisable",
+--   pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+--   callback = function()
+--     vim.b.copilot_enabled = false
+--   end,
+-- })
 
