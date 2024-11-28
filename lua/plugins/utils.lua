@@ -1,4 +1,18 @@
 return {
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
+  -- {
+  --   "3rd/image.nvim",
+  --   build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+  --   opts = {}
+  -- },
   { 
     'dnlhc/glance.nvim',
     config = function()
@@ -206,36 +220,37 @@ return {
       })
     end
   },
-  -- {
-  --   "karb94/neoscroll.nvim",
-  --   config = function()
-  --     local neoscroll = require('neoscroll')
-  --     neoscroll.setup({
-  --       mappings = { -- Keys to be mapped to their corresponding default scrolling animation
-  --         '<C-u>', '<C-d>',
-  --         '<C-b>', '<C-f>',
-  --         '<C-y>', '<C-e>',
-  --         'zt', 'zz', 'zb',
-  --       },
-  --       hide_cursor = true,          -- Hide cursor while scrolling
-  --       stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-  --       respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-  --       cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-  --       easing = 'liner',            -- Default easing function
-  --       pre_hook = nil,              -- Function to run before the scrolling animation starts
-  --       post_hook = nil,             -- Function to run after the scrolling animation ends
-  --       performance_mode = false,    -- Disable "Performance Mode" on all buffers.
-  --     })
-  --     local keymap = {
-  --       ["<C-u>"] = function() neoscroll.ctrl_u({ duration = 250, easing = 'sine' }) end,
-  --       ["<C-d>"] = function() neoscroll.ctrl_d({ duration = 250, easing = 'sine' }) end,
-  --     }
-  --     local modes = { 'n', 'v', 'x' }
-  --     for key, func in pairs(keymap) do
-  --       vim.keymap.set(modes, key, func)
-  --     end
-  --   end
-  -- }
+  {
+    "karb94/neoscroll.nvim",
+    enabled = false,
+    config = function()
+      local neoscroll = require('neoscroll')
+      neoscroll.setup({
+        mappings = { -- Keys to be mapped to their corresponding default scrolling animation
+          '<C-u>', '<C-d>',
+          '<C-b>', '<C-f>',
+          '<C-y>', '<C-e>',
+          'zt', 'zz', 'zb',
+        },
+        hide_cursor = true,          -- Hide cursor while scrolling
+        stop_eof = true,             -- Stop at <EOF> when scrolling downwards
+        respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+        easing = 'liner',            -- Default easing function
+        pre_hook = nil,              -- Function to run before the scrolling animation starts
+        post_hook = nil,             -- Function to run after the scrolling animation ends
+        performance_mode = false,    -- Disable "Performance Mode" on all buffers.
+      })
+      local keymap = {
+        ["<C-u>"] = function() neoscroll.ctrl_u({ duration = 250, easing = 'sine' }) end,
+        ["<C-d>"] = function() neoscroll.ctrl_d({ duration = 250, easing = 'sine' }) end,
+      }
+      local modes = { 'n', 'v', 'x' }
+      for key, func in pairs(keymap) do
+        vim.keymap.set(modes, key, func)
+      end
+    end
+  },
   -- { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }
   {
     'kevinhwang91/nvim-ufo',

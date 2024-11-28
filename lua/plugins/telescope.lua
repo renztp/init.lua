@@ -215,6 +215,7 @@ return {
 		vim.keymap.set("n", "<leader><leader>p", "<cmd>Telescope builtin<CR>")
 		vim.keymap.set("n", "<leader>pp", builtin.commands, {})
 		vim.keymap.set("n", "<leader>pf", builtin.live_grep, {})
+    vim.keymap.set("n", "<leader>faib", ":lua require('telescope.builtin').live_grep({grep_open_files=true})<CR>")
 
 		-- vim.keymap.set('n', '<M-s>', builtin.live_grep, {})
 		vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
