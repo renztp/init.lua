@@ -1,12 +1,13 @@
 return {
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
-    opts = {},
+    "OXY2DEV/markview.nvim",
+    lazy = false,      -- Recommended
+    -- ft = "markdown" -- If you decide to lazy-load anyway
+
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    }
   },
   -- {
   --   "3rd/image.nvim",
@@ -222,7 +223,7 @@ return {
   },
   {
     "karb94/neoscroll.nvim",
-    enabled = false,
+    enabled = true,
     config = function()
       local neoscroll = require('neoscroll')
       neoscroll.setup({
@@ -236,14 +237,14 @@ return {
         stop_eof = true,             -- Stop at <EOF> when scrolling downwards
         respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
         cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-        easing = 'liner',            -- Default easing function
+        easing = 'linear',            -- Default easing function
         pre_hook = nil,              -- Function to run before the scrolling animation starts
         post_hook = nil,             -- Function to run after the scrolling animation ends
         performance_mode = false,    -- Disable "Performance Mode" on all buffers.
       })
       local keymap = {
-        ["<C-u>"] = function() neoscroll.ctrl_u({ duration = 250, easing = 'sine' }) end,
-        ["<C-d>"] = function() neoscroll.ctrl_d({ duration = 250, easing = 'sine' }) end,
+        ["<C-u>"] = function() neoscroll.ctrl_u({ duration = 100, easing = 'quintic' }) end,
+        ["<C-d>"] = function() neoscroll.ctrl_d({ duration = 100, easing = 'quintic' }) end,
       }
       local modes = { 'n', 'v', 'x' }
       for key, func in pairs(keymap) do
