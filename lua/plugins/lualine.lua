@@ -148,6 +148,26 @@ return {
           lualine_c = {},
           lualine_x = {},
         },
+        -- tabline = {
+        --   lualine_a = { {
+        --     'buffers',
+        --     show_filename_only = true,
+        --     mode = 0,
+        --     filetype_names = {
+        --       TelescopePrompt = 'Telescope',
+        --       dashboard = 'Dashboard',
+        --       packer = 'Packer',
+        --       fzf = 'FZF',
+        --       alpha = 'Alpha',
+        --       oil = 'Oil',
+        --     },
+        --   } },
+        --   lualine_b = {},
+        --   lualine_c = {},
+        --   lualine_x = {},
+        --   lualine_y = { 'diff' },
+        --   lualine_z = { 'tabs' }
+        -- }
       }
 
       -- Inserts a component in lualine_c at left section

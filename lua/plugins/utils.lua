@@ -1,6 +1,7 @@
 return {
   {
     "OXY2DEV/markview.nvim",
+    enabled = false,
     lazy = false,      -- Recommended
     -- ft = "markdown" -- If you decide to lazy-load anyway
 
@@ -9,12 +10,7 @@ return {
       "nvim-tree/nvim-web-devicons"
     }
   },
-  -- {
-  --   "3rd/image.nvim",
-  --   build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
-  --   opts = {}
-  -- },
-  { 
+  {
     'dnlhc/glance.nvim',
     config = function()
       require('glance').setup({

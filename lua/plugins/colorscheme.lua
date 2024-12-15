@@ -1,7 +1,7 @@
 return {
   {
     'Mofiqul/vscode.nvim',
-    enabled = true,
+    enabled = false,
     config = function()
       require('vscode').setup({
         transparent = false,
@@ -13,6 +13,7 @@ return {
   },
   {
     'loctvl842/monokai-pro.nvim',
+    enabled = false,
     lazy = false,
     config = function()
       require('monokai-pro').setup({
@@ -37,13 +38,14 @@ return {
   },
   {
     "rebelot/kanagawa.nvim",
+    lazy = false,
     config = function()
       require('kanagawa').setup({
         compile = false,             -- enable compiling the colorscheme
         undercurl = true,            -- enable undercurls
         commentStyle = { italic = true },
-        functionStyle = {},
-        keywordStyle = { italic = true },
+        functionStyle = { italic = true, bold = true },
+        keywordStyle = { },
         statementStyle = { bold = true },
         typeStyle = {},
         transparent = false,         -- do not set background color
@@ -58,10 +60,19 @@ return {
           light = "lotus"
         }
       })
+
+      local colorscheme = "kanagawa-wave"
+
+      local status_ok = pcall(vim.cmd, "colorscheme " .. colorscheme)
+      if not status_ok then
+        vim.cmd("colorscheme " .. colorscheme)
+        return
+      end
     end
   },
   {
     'navarasu/onedark.nvim',
+    enabled = false,
     config = function()
       require('onedark').setup {
         style = 'darker',

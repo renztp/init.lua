@@ -163,6 +163,9 @@ vim.keymap.set('n', '<leader>di', "<cmd>DBUIToggle<CR>")
 
 vim.keymap.set('n', '<C-f>', '/\\c')
 
+vim.keymap.set("n", "<leader>o", "o<ESC>k")
+vim.keymap.set("n", "<leader>O", "O<ESC>j")
+
 -- highlight yanked text for 200ms using the "Visual" highlight group
 vim.cmd [[
   augroup highlight_yank
@@ -244,7 +247,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   command = [[highlight CursorLine guibg=#333333 cterm=underline]]
 })
 -- vim.cmd [[colorscheme u]]
-vim.cmd [[colorscheme kanagawa-wave]]
 -- vim.cmd [[colorscheme habamax]]
 -- vim.cmd [[colorscheme nightfox]]
 
@@ -281,3 +283,15 @@ vim.api.nvim_create_augroup("CopilotDisable", { clear = true })
 --   end,
 -- })
 
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     vim.defer_fn(function()
+--       vim.cmd("colorscheme kanagawa-wave")
+--     end, 5000)
+--   end
+-- })
+
+
+-- vim.cmd [[colorscheme kanagawa-wave]]
+
+vim.cmd'colorscheme kanagawa-wave'
