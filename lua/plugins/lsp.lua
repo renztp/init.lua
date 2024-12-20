@@ -78,7 +78,7 @@ return {
         border = "rounded"
       }
     })
-    vim.keymap.set({ 'n' }, '<C-k>', function()
+    vim.keymap.set('i', '<C-k>', function()
       require('lsp_signature').toggle_float_win()
     end, { silent = true, noremap = true, desc = 'toggle signature' })
 
