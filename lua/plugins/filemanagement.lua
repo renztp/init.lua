@@ -51,7 +51,7 @@ return {
   },
   {
     'akinsho/bufferline.nvim',
-    enabled = false,
+    enabled = true,
     lazy = false,
     version = "*",
     dependencies = {
@@ -87,8 +87,8 @@ return {
             return "(" .. count .. ")"
           end,
           -- indicator = {
-          --   icon = '▎', -- this should be omitted if indicator style is not 'icon'
-          --   style = 'underline',
+          --   -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
+          --   style = 'slant',
           -- },
           -- Test
           offsets = { { filetype = "NvimTree", text = "File Explorer", text_align = "center", separator = true } },
@@ -102,7 +102,7 @@ return {
             delay = 200,
             reveal = {'close'}
           },
-          separator_style = "thick",
+          separator_style = "slant",
           enforce_regular_tabs = false,
           always_show_bufferline = true,
           sort_by = 'id',

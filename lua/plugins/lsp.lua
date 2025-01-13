@@ -30,6 +30,7 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         "lua_ls",
+        "pyright",
       },
       handlers = {
         function(server_name) -- default handler (optional)
@@ -70,14 +71,6 @@ return {
       }
     })
 
-    require "lsp_signature".setup({
-      bind = true, -- This is mandatory, otherwise border config won't get registered.
-      hint_prefix = "",
-      hint_enable = false,
-      handler_opts = {
-        border = "rounded"
-      }
-    })
     vim.keymap.set('i', '<C-k>', function()
       require('lsp_signature').toggle_float_win()
     end, { silent = true, noremap = true, desc = 'toggle signature' })
@@ -125,9 +118,9 @@ return {
         ["<C-Space>"] = cmp.mapping.complete(),
       }),
       sources = cmp.config.sources({
-        { name = 'luasnip' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
+        { name = 'luasnip' },
       }, {
         { name = 'buffer' },
       }),
@@ -147,6 +140,15 @@ return {
         header = "",
         prefix = "",
       },
+    })
+
+    require "lsp_signature".setup({
+      bind = true, -- This is mandatory, otherwise border config won't get registered.
+      hint_prefix = "",
+      hint_enable = false,
+      handler_opts = {
+        border = "rounded"
+      }
     })
 
       -- local function format_and_organize_imports()

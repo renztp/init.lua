@@ -151,6 +151,7 @@ return {
   },
   {
     'akinsho/toggleterm.nvim',
+    enabled = false,
     version = "*",
     config = function()
       require('toggleterm').setup {
@@ -188,7 +189,19 @@ return {
     end
   },
   {
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    config = function()
+
+      require("outline").setup {
+        -- Your setup opts here (leave empty to use defaults)
+      }
+    end
+  },
+  {
     'simrat39/symbols-outline.nvim',
+    enabled = false,
     config = function()
       require('symbols-outline').setup({})
     end

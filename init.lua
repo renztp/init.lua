@@ -212,7 +212,6 @@ vim.keymap.set('n', '<leader>cf', function()
   print('Copied filename to clipboard: ' .. filename)
 end)
 
-vim.keymap.set('n', '<F9>', '<cmd>SymbolsOutline<CR>');
 vim.keymap.set('n','<M-[>', '<C-w>30<')
 vim.keymap.set('n','<M-]>', '<C-w>30>')
 
@@ -242,10 +241,6 @@ end)
 
 
 
--- Colorscheme
-vim.api.nvim_create_autocmd('ColorScheme', {
-  command = [[highlight CursorLine guibg=#333333 cterm=underline]]
-})
 -- vim.cmd [[colorscheme u]]
 -- vim.cmd [[colorscheme habamax]]
 -- vim.cmd [[colorscheme nightfox]]
@@ -294,4 +289,9 @@ vim.api.nvim_create_augroup("CopilotDisable", { clear = true })
 
 -- vim.cmd [[colorscheme kanagawa-wave]]
 
+vim.keymap.set("n", "<F9>", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 vim.cmd'colorscheme kanagawa-wave'
+-- Colorscheme mods
+vim.api.nvim_create_autocmd('ColorScheme', {
+  command = [[highlight CursorLine guibg=#333333 cterm=underline]]
+})
