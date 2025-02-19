@@ -121,6 +121,9 @@ return {
       })
     end
   },
+  {
+    'NLKNguyen/papercolor-theme'
+  }
   -- {
   --   "jackplus-xyz/binary.nvim",
   --   opts = {

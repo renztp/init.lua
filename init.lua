@@ -52,7 +52,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",     -- latest stable release
+    "--branch=stable", -- latest stable release
     lazypath,
   })
 end
@@ -109,7 +109,8 @@ vim.keymap.set("v", "<leader>p", [["+p]])
 vim.keymap.set("v", "<leader>P", [["+P]])
 
 vim.keymap.set("n", "<F6>", "<cmd>term python3 %<CR>")
-vim.keymap.set("n", "<F5>", "<cmd>CompileAndRunTS<CR>")
+-- vim.keymap.set("n", "<F5>", "<cmd>term npm run compile:playground<CR>")
+vim.keymap.set("n", "<F5>", "<cmd>term npm run start<CR>")
 -- vim.keymap.set("n", "<leader>fc", "<cmd>LspZeroFormat<CR>")
 -- vim.api.nvim_set_keymap('n', '<C-d>',
 --   "v:count == 0 ? 8 .. '<C-d>zz' : '<C-d>zz'",
@@ -148,8 +149,14 @@ vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', {})
 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', {})
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', {})
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', {})
-vim.keymap.set("n", "<leader>cd", "<cmd>Copilot disable<CR>")
-vim.keymap.set("n", "<leader>ce", "<cmd>Copilot enable<CR>")
+vim.keymap.set("n", "<leader>cd", function()
+  vim.cmd 'Copilot disable'
+  vim.notify("Copilot disabled", vim.log.levels.INFO)
+end, { desc = "Disable Copilot" })
+vim.keymap.set("n", "<leader>ce", function()
+  vim.cmd 'Copilot enable'
+  vim.notify("Copilot enabled", vim.log.levels.INFO)
+end, { desc = "Enable Copilot" })
 vim.keymap.set("n", "<leader>ssl", "<cmd>vertical resize +30<CR>")
 vim.keymap.set("n", "<leader>ssh", "<cmd>vertical resize -30<CR>")
 
@@ -198,7 +205,7 @@ vim.keymap.set('n', '<leader><leader>th', '<cmd>tabprevious<cr>')
 vim.keymap.set('n', '<leader>he', '<cmd>TSEnable highlight<cr>')
 vim.keymap.set('n', '<leader>ps', '<cmd>w<CR>')
 local diagnostics = {
-  virtual_text = false,   -- Disable builtin virtual text diagnostic
+  virtual_text = false, -- Disable builtin virtual text diagnostic
   virtual_improved = {
     current_line = 'only',
   },
@@ -212,8 +219,8 @@ vim.keymap.set('n', '<leader>cf', function()
   print('Copied filename to clipboard: ' .. filename)
 end)
 
-vim.keymap.set('n','<M-[>', '<C-w>30<')
-vim.keymap.set('n','<M-]>', '<C-w>30>')
+vim.keymap.set('n', '<M-[>', '<C-w>30<')
+vim.keymap.set('n', '<M-]>', '<C-w>30>')
 
 vim.api.nvim_command('au BufRead,BufNewFile *.njk set filetype=html')
 vim.api.nvim_command('au BufRead,BufNewFile *.ejs set filetype=html')
@@ -238,14 +245,6 @@ vim.keymap.set('n', 'zP', function()
   require("ufo.preview"):peekFoldedLinesUnderCursor()
 end)
 
-
-
-
--- vim.cmd [[colorscheme u]]
--- vim.cmd [[colorscheme habamax]]
--- vim.cmd [[colorscheme nightfox]]
-
-
 local lsp = vim.lsp.buf
 local function copy_function_names()
   lsp.document_symbol({}, function(err, result, ctx)
@@ -265,6 +264,13 @@ end
 -- Call the function
 vim.keymap.set('n', '<leader><leader>cf', copy_function_names)
 vim.keymap.set('n', '<C-g>', ':', { noremap = false, silent = false })
+
+vim.keymap.set('n', '<leader>db', function()
+  local char = vim.fn.input("Delete to char: ")
+  if char ~= " " then
+    vim.cmd("normal! dt" .. char .. "i ")
+  end
+end)
 
 -- Create an autocommand group to manage Copilot settings
 vim.api.nvim_create_augroup("CopilotDisable", { clear = true })
@@ -290,7 +296,7 @@ vim.api.nvim_create_augroup("CopilotDisable", { clear = true })
 -- vim.cmd [[colorscheme kanagawa-wave]]
 
 vim.keymap.set("n", "<F9>", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
-vim.cmd'colorscheme kanagawa-wave'
+vim.cmd 'colorscheme kanagawa-wave'
 -- Colorscheme mods
 vim.api.nvim_create_autocmd('ColorScheme', {
   command = [[highlight CursorLine guibg=#333333 cterm=underline]]

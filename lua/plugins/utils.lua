@@ -1,4 +1,5 @@
 return {
+  {"NStefan002/screenkey.nvim"},
   {
     "OXY2DEV/markview.nvim",
     enabled = false,
