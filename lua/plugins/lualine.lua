@@ -7,19 +7,19 @@ return {
       opt = true
     },
     config = function()
-      local conditions = {
-        buffer_not_empty = function()
-          return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
-        end,
-        hide_in_width = function()
-          return vim.fn.winwidth(0) > 80
-        end,
-        check_git_workspace = function()
-          local filepath = vim.fn.expand('%:p:h')
-          local gitdir = vim.fn.finddir('.git', filepath .. ';')
-          return gitdir and #gitdir > 0 and #gitdir < #filepath
-        end,
-      }
+      -- local conditions = {
+      --   buffer_not_empty = function()
+      --     return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
+      --   end,
+      --   hide_in_width = function()
+      --     return vim.fn.winwidth(0) > 80
+      --   end,
+      --   check_git_workspace = function()
+      --     local filepath = vim.fn.expand('%:p:h')
+      --     local gitdir = vim.fn.finddir('.git', filepath .. ';')
+      --     return gitdir and #gitdir > 0 and #gitdir < #filepath
+      --   end,
+      -- }
 
       local colors = {
         bg       = '#202328',
@@ -43,8 +43,12 @@ return {
         },
         -- component_separators = { left = ' ', right = ' ' },
         sections = {
-          lualine_a = { 'branch' },
-          lualine_b = { 'diagnostics' },
+          lualine_a = { 'mode' },
+          lualine_b = { 'branch' },
+          lualine_c = { {
+            'filename',
+            path = 1
+          } },
           -- lualine_c = {
           --   'diff',
           --   -- Is it me or the symbol for modified us really weird
@@ -60,28 +64,29 @@ return {
           --   'filename',
           --   path = 4
           -- } },
-          lualine_x = { 'encoding', 'fileformat', 'filetype' },
-          lualine_y = { {
-            -- Lsp server name .
-            function()
-              local msg = 'No Active Lsp'
-              local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-              local clients = vim.lsp.get_active_clients()
-              if next(clients) == nil then
-                return msg
-              end
-              for _, client in ipairs(clients) do
-                local filetypes = client.config.filetypes
-                if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                  return client.name
-                end
-              end
-              return msg
-            end,
-            icon = ' ',
-            color = { fg = '#ffffff', gui = 'bold' },
-          } },
-          lualine_z = { 'location' }
+          -- lualine_x = { 'encoding', 'fileformat', 'filetype' },
+          lualine_x = { 'encoding', 'fileformat' },
+          -- lualine_y = { {
+          --   -- Lsp server name .
+          --   function()
+          --     local msg = 'No Active Lsp'
+          --     local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+          --     local clients = vim.lsp.get_active_clients()
+          --     if next(clients) == nil then
+          --       return msg
+          --     end
+          --     for _, client in ipairs(clients) do
+          --       local filetypes = client.config.filetypes
+          --       if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+          --         return client.name
+          --       end
+          --     end
+          --     return msg
+          --   end,
+          --   icon = ' ',
+          --   color = { fg = '#ffffff', gui = 'bold' },
+          -- } },
+          -- lualine_y = { 'location' }
         },
         -- winbar = {
         --   lualine_a = {},
