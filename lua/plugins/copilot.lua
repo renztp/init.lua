@@ -4,14 +4,13 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
     dependencies = {
       { "github/copilot.vim" },    -- or github/copilot.vim
       { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
     },
     opts = {
       debug = false,                    -- Enable debugging
-      model = 'gpt-4',                  -- GPT model to use, 'gpt-3.5-turbo' or 'gpt-4'
+      -- model = 'gpt-4',                  -- GPT model to use, 'gpt-3.5-turbo' or 'gpt-4'
       temperature = 0.1,                -- GPT temperature
 
       question_header = '',             -- Header to use for user questions

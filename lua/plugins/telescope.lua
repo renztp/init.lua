@@ -229,5 +229,8 @@ return {
 
 		--set line number to the preview window
 		vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
+
+    -- quick switch angular components files
+    vim.keymap.set("n", "<leader>;", ":NgQuickSwitchToggle<CR>", { noremap = true })
 	end,
 }

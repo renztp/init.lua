@@ -1,5 +1,6 @@
 vim.opt.guicursor = ""
 vim.g.mapleader = " "
+vim.opt.showmode = false
 
 vim.opt.nu = true
 vim.opt.relativenumber = false
@@ -44,6 +45,8 @@ vim.opt.background = "dark"
 --
 vim.opt.clipboard = "unnamedplus"
 vim.opt.mouse = a
+vim.opt.laststatus = 3
+vim.opt.splitkeep = "screen"
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -296,6 +299,7 @@ vim.api.nvim_create_augroup("CopilotDisable", { clear = true })
 -- vim.cmd [[colorscheme kanagawa-wave]]
 
 vim.keymap.set("n", "<F9>", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+-- vim.cmd 'colorscheme kanagawa-wave'
 vim.cmd 'colorscheme kanagawa-wave'
 -- Colorscheme mods
 -- vim.api.nvim_create_autocmd('ColorScheme', {

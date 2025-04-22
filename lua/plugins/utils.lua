@@ -1,5 +1,12 @@
 return {
   {
+    'kiennt63/harpoon-files.nvim',
+    dependencies = {
+      { 'ThePrimeagen/harpoon', branch = 'harpoon2' },
+    }
+  },
+  { "matthiasweiss/angular-quickswitch.nvim", opts = {} },
+  {
     "bassamsdata/namu.nvim",
     config = function()
       require("namu").setup({

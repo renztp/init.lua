@@ -7,6 +7,7 @@ return {
       opt = true
     },
     config = function()
+      local harpoon_files = require 'harpoon_files'
       -- local conditions = {
       --   buffer_not_empty = function()
       --     return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -45,10 +46,13 @@ return {
         sections = {
           lualine_a = { 'mode' },
           lualine_b = { 'branch' },
-          lualine_c = { {
-            'filename',
-            path = 1
-          } },
+          lualine_c = {
+            { harpoon_files.lualine_component }
+          },
+          -- lualine_c = { {
+          --   'filename',
+          --   path = 1
+          -- } },
           -- lualine_c = {
           --   'diff',
           --   -- Is it me or the symbol for modified us really weird
@@ -88,17 +92,18 @@ return {
           -- } },
           -- lualine_y = { 'location' }
         },
-        -- winbar = {
-        --   lualine_a = {},
-        --   lualine_b = {},
-        --   lualine_c = { {
-        --     'filename',
-        --     path = 1,
-        --   } },
-        --   lualine_x = {},
-        --   lualine_y = {},
-        --   lualine_z = {}
-        -- },
+        winbar = {
+          lualine_a = {
+          },
+          lualine_b = {},
+          lualine_c = { {
+            'filename',
+            path = 1,
+          } },
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {}
+        },
         -- inactive_winbar = {
         --   lualine_a = {},
         --   lualine_b = {},

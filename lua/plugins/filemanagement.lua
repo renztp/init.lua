@@ -1,6 +1,7 @@
 return {
   {
     "nvim-tree/nvim-tree.lua",
+    enabled = true,
     version = "*",
     lazy = false,
     dependencies = {
@@ -19,7 +20,7 @@ return {
         renderer = {
           group_empty = true,
           indent_markers = {
-            enable = true,
+            enable = false,
           },
           icons = {
             git_placement = "signcolumn",
