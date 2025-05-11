@@ -305,3 +305,15 @@ vim.cmd 'colorscheme kanagawa-wave'
 -- vim.api.nvim_create_autocmd('ColorScheme', {
 --   command = [[highlight CursorLine guibg=#333333 cterm=underline]]
 -- })
+
+vim.keymap.set("i", "<F11>", function()
+  -- simulate normal mode sequence
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(
+    "<Esc>^wDi", true, false, true
+  ), "i", true)
+  -- vim.api.nvim_put({ "\" --glob '**/*.e2e.spec.ts'" }, "c", true, true)
+  -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(
+  --   "i\" --glob '**/*.e2e.spec.ts\"", true, false, true
+  -- ), "n", true)
+end, { desc = "Insert glob and move cursor to search", noremap = true })
+

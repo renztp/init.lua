@@ -45,9 +45,14 @@ return {
         -- component_separators = { left = ' ', right = ' ' },
         sections = {
           lualine_a = { 'mode' },
-          lualine_b = { 'branch' },
+          lualine_b = {
+            'branch',
+          },
           lualine_c = {
-            { harpoon_files.lualine_component }
+            {
+              'filename',
+              path = 1
+            }
           },
           -- lualine_c = { {
           --   'filename',
@@ -69,7 +74,7 @@ return {
           --   path = 4
           -- } },
           -- lualine_x = { 'encoding', 'fileformat', 'filetype' },
-          lualine_x = { 'encoding', 'fileformat' },
+          lualine_x = { { harpoon_files.lualine_component } },
           -- lualine_y = { {
           --   -- Lsp server name .
           --   function()
@@ -92,18 +97,19 @@ return {
           -- } },
           -- lualine_y = { 'location' }
         },
-        winbar = {
-          lualine_a = {
-          },
-          lualine_b = {},
-          lualine_c = { {
-            'filename',
-            path = 1,
-          } },
-          lualine_x = {},
-          lualine_y = {},
-          lualine_z = {}
-        },
+        -- winbar = {
+        --   lualine_a = {
+        --   },
+        --   lualine_b = {},
+        --   lualine_c = {},
+        --   -- lualine_c = { {
+        --   --   'filename',
+        --   --   path = 1,
+        --   -- } },
+        --   lualine_x = {},
+        --   lualine_y = {},
+        --   lualine_z = {}
+        -- },
         -- inactive_winbar = {
         --   lualine_a = {},
         --   lualine_b = {},

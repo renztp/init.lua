@@ -24,6 +24,40 @@ return {
 	config = function()
 		local lga_actions = require("telescope-live-grep-args.actions")
 
+    local globs = {
+      "--glob '**/*.e2e.spec.ts'",
+      "--glob '**/*.spec.ts'",
+      "--glob '**/*.ts'",
+    }
+
+    local glob_index = 1
+
+    local function cycle_glob()
+      return function(prompt_bufnr)
+        local current_glob = globs[glob_index]
+
+        -- Move to next for next time
+        glob_index = glob_index + 1
+        if glob_index > #globs then
+          glob_index = 1
+        end
+
+        lga_actions.quote_prompt({
+          postfix = " " .. current_glob,
+        })(prompt_bufnr)
+
+
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(
+          "<Esc>^wli", true, false, true
+        ), "n", true)
+        -- lga_actions.edit_prompt(prompt_bufnr, current_glob)
+        --
+        -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(
+        --   "<Esc>^wwi", true, false, true
+        -- ), "i", true)
+      end
+    end
+
 		require("telescope").setup({
 			pickers = {
 				current_buffer_fuzzy_find = {
@@ -201,6 +235,7 @@ return {
 							["<C-s>"] = lga_actions.quote_prompt({ postfix = " --glob 'suitespot-settings-ui/**'" }),
 							["<C-a>"] = lga_actions.quote_prompt({ postfix = " --glob 'suitespot-admin-ui/**'" }),
 							["<C-space>"] = lga_actions.to_fuzzy_refine,
+              ["<F12>"] = cycle_glob(),
 						},
 					},
 				},
@@ -232,5 +267,8 @@ return {
 
     -- quick switch angular components files
     vim.keymap.set("n", "<leader>;", ":NgQuickSwitchToggle<CR>", { noremap = true })
+
+
+
 	end,
 }
