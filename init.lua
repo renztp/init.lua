@@ -194,7 +194,7 @@ vim.cmd [[
 -- stop Persistence => session won't be saved on exit
 -- vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
 
--- vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set('n', '<M-h>', "<cmd>bprev<CR>")
 vim.keymap.set('n', '<M-l>', "<cmd>bnext<CR>")

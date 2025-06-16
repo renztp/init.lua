@@ -14,13 +14,13 @@ return {
         },
         sort_by = "case_sensitive",
         view = {
-          width = 60,
+          width = 40,
           side = "left"
         },
         renderer = {
           group_empty = true,
           indent_markers = {
-            enable = false,
+            enable = true,
           },
           icons = {
             git_placement = "signcolumn",
