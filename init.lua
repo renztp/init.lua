@@ -300,7 +300,9 @@ vim.api.nvim_create_augroup("CopilotDisable", { clear = true })
 
 vim.keymap.set("n", "<F9>", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
 -- vim.cmd 'colorscheme kanagawa-wave'
-vim.cmd 'colorscheme kanagawa-wave'
+-- vim.cmd 'colorscheme PaperColor'
+vim.cmd 'colorscheme vscode'
+vim.cmd 'NvimTreeOpen'
 -- Colorscheme mods
 -- vim.api.nvim_create_autocmd('ColorScheme', {
 --   command = [[highlight CursorLine guibg=#333333 cterm=underline]]

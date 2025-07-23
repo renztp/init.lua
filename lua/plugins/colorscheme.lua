@@ -52,7 +52,7 @@ return {
   },
   {
     'Mofiqul/vscode.nvim',
-    enabled = false,
+    enabled = true,
     config = function()
       require('vscode').setup({
         transparent = false,
